@@ -10,6 +10,10 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
 
+    a {
+        text-decoration: none;
+    }
+
     button {
         cursor: pointer;
     }
