@@ -1,0 +1,12 @@
+#login-btn {
+    border: none;
+    height: 40%;
+
+    display: flex;
+    align-items: center;
+    
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    
+    background-color: white;
+}
