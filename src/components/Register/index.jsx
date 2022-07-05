@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { FlexForm } from "./styles";
 
 export const Register = () => {
   const lowerCaseRegex = /(?=.*[a-z])/;
@@ -50,23 +51,23 @@ export const Register = () => {
 
   return (
     <section>
-      <form onSubmit={handleSubmit(onSubmitFunction)}>
+      <FlexForm onSubmit={handleSubmit(onSubmitFunction)}>
         <input placeholder="Usuário" {...register("userName")} />
-        {errors.userName &&  <p>{errors.userName.message}</p>}
+        {errors.userName && <p>{errors.userName.message}</p>}
         <input placeholder="Nome" {...register("name")} />
-        {errors.name &&  <p>{errors.name.message}</p>}
+        {errors.name && <p>{errors.name.message}</p>}
         <input placeholder="Email" {...register("email")} />
-        {errors.email &&  <p>{errors.email.message}</p>}
+        {errors.email && <p>{errors.email.message}</p>}
         <input placeholder="Senha" type="password" {...register("password")} />
-        {errors.password &&  <p>{errors.password.message}</p>}
+        {errors.password && <p>{errors.password.message}</p>}
         <input
           placeholder="Confirmar Senha"
           type="password"
           {...register("confirmPassword")}
         />
-        {errors.confirmPassword &&  <p>{errors.confirmPassword.message}</p>}
+        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
         <button>Cadastrar</button>
-      </form>
+      </FlexForm>
       <span>
         Já tem conta? <button onClick={() => console.log(errors)}>Entre</button>
       </span>
