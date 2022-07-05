@@ -3,10 +3,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 export const Login = () => {
-  const lowerCaseRegex = /(?=.*[a-z])/;
-  const upperCaseRegex = /(?=.*[A-Z])/;
-  const numericRegex = /(?=.*[0-9])/;
-  const magicRegex = /\W|_/;
 
   const formSchema = yup.object().shape({
     
@@ -14,11 +10,6 @@ export const Login = () => {
     password: yup
       .string()
       .required("Digite sua senha!")
-      .min(6, "Mínimo 6 caracteres")
-      .matches(lowerCaseRegex, "Ao menos um minúsculo")
-      .matches(upperCaseRegex, "Ao menos um maiúsculo")
-      .matches(numericRegex, "Ao menos um número")
-      .matches(magicRegex, "Um especial '!@#$'"),
   });
 
   const {
