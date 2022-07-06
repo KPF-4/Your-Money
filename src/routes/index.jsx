@@ -1,36 +1,35 @@
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route } from "react-router-dom";
 
-import Home from "../components/pages/home"
-import Login from "../components/pages/login"
-import Register from "../components/pages/register"
-import News from "../components/pages/news"
-import Support from "../components/pages/support"
-
+import Home from "../pages/home";
+import Login from "../pages/login";
+import Register from "../pages/register";
+import News from "../pages/news";
+import Support from "../pages/support";
 
 function Routes() {
-    return(
-        <Switch>
-            <Route exact path="/">
-                <Home />
-            </Route>
+  return (
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
 
-            <Route exact path="/login">
-                <Login />
-            </Route>
+      <Route exact path="/login">
+        <Login />
+      </Route>
 
-            <Route exact path="/registro">
-                <Register />
-            </Route>
+      <Route exact path="/registro">
+        <Register />
+      </Route>
 
-            <Route exact path="/noticias">
-                <News />
-            </Route>
+      <Route exact path="/noticias">
+        <News />
+      </Route>
 
-            <Route exact path="/suporte">
-                <Support />
-            </Route>
-        </Switch>
-    )
+      <Route exact path="/suporte">
+        <Support />
+      </Route>
+    </Switch>
+  );
 }
 
-export default Routes
+export default Routes;
