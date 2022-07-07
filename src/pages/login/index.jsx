@@ -1,4 +1,5 @@
 import Lottie from "react-lottie";
+import { Link } from "react-router-dom";
 import CentralizedComponent from "../../components/CentralizedComponent";
 import { LoginArea } from "../../components/LoginArea";
 import * as animationData from "./animation.json";
@@ -25,7 +26,9 @@ function Login() {
         />
       </figure>
       <FlexComponent gap="5px">
-        <h1>Your Money</h1>
+        <Link to="/">
+          <h1>Your Money</h1>
+        </Link>
         <h2>Login</h2>
         <LoginArea />
       </FlexComponent>
