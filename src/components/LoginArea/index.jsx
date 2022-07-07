@@ -8,8 +8,12 @@ import Input from "../Input";
 
 export const LoginArea = () => {
   const formSchema = yup.object().shape({
-    email: yup.string().required("Digite seu email!").email("Email inválido"),
-    password: yup.string().required("Digite sua senha!"),
+    email: yup.string()
+              .required("Digite seu email!")
+              .email("Email inválido"),
+              
+    password: yup.string()
+                 .required("Digite sua senha!"),
   });
 
   const {

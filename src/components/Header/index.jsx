@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 
 import "./style.css";
 
-function Header() {
+const Header = () => {
   const token = localStorage.getItem("@TOKEN");
   const redirectButtons = ["Simulador", "Cotação", "Notícias", "Suporte"];
 
   return (
-    <header>
+    <header id="home-header">
       <div id="header-container">
         <nav id="principal-menu">
           <AiOutlineMenuUnfold id="menu-icon" />
@@ -48,4 +48,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Header
