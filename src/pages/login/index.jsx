@@ -1,11 +1,12 @@
-import "./style.css"
+import { LoginArea } from "../../components/LoginArea";
+import "./style.css";
 
-function Login(){
-    return(
-        <div>
-            
-        </div>
-    )
+function Login() {
+  return (
+    <div>
+      <LoginArea />
+    </div>
+  );
 }
 
-export default Login
+export default Login;

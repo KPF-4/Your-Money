@@ -1,13 +1,26 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+    }
+
+    h1 {
+        font-family: "Lobster", cursive;
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-family: "Roboto";
+        font-size: 29px;
+    }
+
+    h3, label {
+        font-family: "Roboto";
+        font-size: 19px;
     }
 
     a {
@@ -17,5 +30,4 @@ export default createGlobalStyle`
     button {
         cursor: pointer;
     }
-`
-
+`;
