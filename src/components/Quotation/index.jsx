@@ -5,26 +5,29 @@ import { StyleForm, StyleQuotation, StyleSpan } from "./style";
 import { useForm } from "react-hook-form";
 
 export const Quotation = ()=>{
-    const {register, handleSubmit} = useForm({shouldUseNativeValidation: true})
+    const {register, handleSubmit} = useForm({shouldUseNativeValidation: true});
 
     const {coins} = useContext(CoinsContext);
     const {quotation, listQuotation, setValueConvert} = useContext(QuotationContext);
-    const names = Object.keys(listQuotation)
-    const namesCoins = Object.keys(coins)
-    const nameQuotation = Object.keys(quotation)
+    const names = Object.keys(listQuotation);
+    const namesCoins = Object.keys(coins);
+    const nameQuotation = Object.keys(quotation);
 
-    const [inputValue, setInputValue] = useState(0)
-    const [total, setTotal] = useState(0)
+    const [inputValue, setInputValue] = useState(0);
+    const [total, setTotal] = useState(0);
 
-    const onSubmitConvert = (data)=>{
-        setInputValue(data.value)
-        setValueConvert(data.moeda)
+    const onSubmitConvert = async (data)=>{
+        setValueConvert(data.moeda);
+        setInputValue(data.value);
+        console.log(inputValue)
     }
-    console.log(quotation)
+
     const TotalConvert = ()=>{
-        const quotationValue = quotation[nameQuotation]?.ask
+        const quotationValue = quotation[nameQuotation]?.ask;
         console.log(quotationValue)
+        setTotal(parseFloat(parseFloat(inputValue)/parseFloat(quotationValue)).toFixed(2));
     }
+
     useEffect(()=>{
         TotalConvert()
     },[inputValue])
@@ -33,7 +36,14 @@ export const Quotation = ()=>{
         <StyleQuotation onSubmit={handleSubmit(onSubmitConvert)}> 
             <StyleForm>
                 <h3>Conversão de Moeda</h3>
-                <input placeholder={"Valor em Reais"} {...register("value", {required:"Digite o valor desejado!"})}/>
+                <input placeholder={"Valor"} {...register("value", {required:"Digite o valor desejado!"})}/>
+                <span>Converter de</span>
+                <select {...register("moeda")}>
+                    {namesCoins.map((el, index)=>
+                        <option key={index} value={el}>{el+" / "+coins[el]}</option>
+                    )}
+                </select>
+                <span>Converter para</span>
                 <select {...register("moeda")}>
                     {namesCoins.map((el, index)=>
                         <option key={index} value={el}>{el+" / "+coins[el]}</option>
@@ -41,8 +51,10 @@ export const Quotation = ()=>{
                 </select>
                 <button type="submit">Converter</button>
             </StyleForm>
-            {
-                
+            {   total &&
+                <div>
+                    <span>{total}</span>
+                </div>
             }
             <div className="title">
                 <h3>Cotação de Moedas</h3>
