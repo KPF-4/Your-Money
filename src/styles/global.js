@@ -9,7 +9,11 @@ export default createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
     }
-
+    :root{
+        --green: #008000;
+        --red: #FF0000;
+        --black: #000000;
+    }
     button {
         cursor: pointer;
     }
