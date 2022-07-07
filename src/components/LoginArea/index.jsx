@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
+import { FlexComponent, FlexForm, Line } from "./styles";
+import { Button } from "../Button/styles";
+import Input from "../Input";
 
 export const LoginArea = () => {
   const formSchema = yup.object().shape({
@@ -21,18 +24,44 @@ export const LoginArea = () => {
 
   return (
     <section>
-      <form onSubmit={handleSubmit(onSubmitFunction)}>
-        <input placeholder="Email" {...register("email")} />
-        {errors.email && <p>{errors.email.message}</p>}
-        <input placeholder="Senha" type="password" {...register("password")} />
-        {errors.password && <p>{errors.password.message}</p>}
-        <button>Entrar</button>
-      </form>
-      <span>
-        <Link to="/registro">
-          <button>Cadastre-se</button>
-        </Link>
-      </span>
+      <FlexForm onSubmit={handleSubmit(onSubmitFunction)}>
+        <FlexComponent direction="column" gap="10px" className="data-content">
+          <Input
+            label="Email:"
+            placeholder="Digite seu email"
+            name="email"
+            error={errors.email}
+            register={register}
+          />
+
+          <Input
+            label="Senha:"
+            placeholder="Digite sua senha"
+            type="password"
+            name="password"
+            error={errors.password}
+            register={register}
+          />
+
+          <FlexComponent justify="center" align="flex-end">
+            <Button background="#3490DC" width="60%">
+              Entrar
+            </Button>
+          </FlexComponent>
+          <FlexComponent wrap="nowrap" gap="10px" align="center">
+            <Line></Line>
+            <p>ou</p>
+            <Line></Line>
+          </FlexComponent>
+          <Link to="/registro">
+            <FlexComponent justify="center">
+              <Button background="#38C172" width="60%">
+                Cadastre-se
+              </Button>
+            </FlexComponent>
+          </Link>
+        </FlexComponent>
+      </FlexForm>
     </section>
   );
 };

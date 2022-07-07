@@ -16,6 +16,9 @@ export const StyledSection = styled.section`
   width: fit-content;
   padding: 25px 30px;
   border-radius: 10px;
+  figure{
+    max-width: 444px;
+  }
   @media screen and (min-width: 1000px) {
     gap: 30px;
     flex-direction: row;

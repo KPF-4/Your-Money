@@ -20,7 +20,7 @@ export default createGlobalStyle`
 
     h3, label {
         font-family: "Roboto";
-        font-size: 19px;
+        font-size: 16px;
     }
 
     a {

@@ -11,4 +11,9 @@ export const Button = styled.button`
   width: ${props=>props.width || "auto"};
   font-size: 14px;
   font-weight: 700;
+  transition: 300ms;
+
+  :hover{
+    transform: scale(1.1);
+  }
 `;
