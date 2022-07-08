@@ -37,6 +37,7 @@ export const QuotationProvider = ({children})=>{
             fetchQuot()
         )
         setPlayQuot(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[playQuot])
 
     return(

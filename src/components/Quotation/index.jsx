@@ -17,7 +17,6 @@ export const Quotation = ()=>{
     const [total, setTotal] = useState(0);
     const [display, setDisplay]= useState(false)
 
-    console.log(display)
     const onSubmitConvert = async (data)=>{
         setInputValue(data.value)
         await setValueConvert(data.moeda)
@@ -27,6 +26,7 @@ export const Quotation = ()=>{
     
     useEffect(()=>{
         setTotal(parseFloat(parseFloat(inputValue)*parseFloat(quotation[nameQuotation]?.ask)).toFixed(2));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[quotation])
 
     const handleBack = async ()=>{
