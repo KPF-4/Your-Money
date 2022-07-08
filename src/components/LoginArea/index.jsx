@@ -1,10 +1,13 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FlexComponent, FlexForm, Line } from "./styles";
 import { Button } from "../Button/styles";
 import Input from "../Input";
+import ApiFake from "../../Service/api_fake";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 const LoginArea = () => {
   const formSchema = yup.object().shape({
@@ -19,8 +22,24 @@ const LoginArea = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
+  const history = useHistory()
+
   const onSubmitFunction = (data) => {
-    console.log(data);
+    
+    ApiFake
+    .post("/login",data)
+    .then((res) => {
+      const { accessToken } = res.data
+      localStorage.setItem("@TOKEN", JSON.stringify(accessToken))
+      toast.success("Sucesso ao acessar sua conta")
+      setTimeout(() => {
+        return history.push("/");
+      }, 2000)
+    })
+    .catch((err) => {
+      toast.error("Email ou senha inválidos")
+    })
+    
   };
 
   return (

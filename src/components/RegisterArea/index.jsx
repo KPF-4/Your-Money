@@ -3,8 +3,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FlexComponent, FlexForm, Line } from "./styles";
 import Input from "../Input";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Button } from "../Button/styles";
+import ApiFake from "../../Service/api_fake";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const RegisterArea = () => {
   const lowerCaseRegex = /(?=.*[a-z])/;
@@ -63,8 +66,28 @@ export const RegisterArea = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
+  const history = useHistory()
+
   const onSubmitFunction = (data) => {
-    console.log(data);
+    
+    const {confirmEmail, confirmPassword,...newData} = data
+
+    ApiFake
+    .post("/register", newData)
+    .then((res) =>{
+      const { accessToken } = res.data
+      localStorage.setItem("@TOKEN", JSON.stringify(accessToken))
+      toast.success("Sucesso ao criar conta")
+      setTimeout(() => {
+        return history.push("/");
+      }, 2000)
+    })
+    .catch((err) => {
+      err.response.data='Email already exists'?
+      toast.error("Usuário já cadastrado, tente outro email"):
+      toast.error("Erro ao criar conta, tente outro email")
+    })
+    
   };
 
   return (
