@@ -6,7 +6,7 @@ import Register from "../pages/register";
 import News from "../pages/news";
 import Support from "../pages/support";
 
-function Routes() {
+const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">

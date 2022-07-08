@@ -5,7 +5,7 @@ import Lottie from "react-lottie";
 import * as animationData from "./animation.json";
 import { Link } from "react-router-dom";
 
-function Register() {
+const Register = () => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
