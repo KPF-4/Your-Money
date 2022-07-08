@@ -25,7 +25,7 @@ const Login = () => {
           isPaused={false}
         />
       </figure>
-      <FlexComponent gap="5px">
+      <FlexComponent gap="16px">
         <Link to="/">
           <h1>Your Money</h1>
         </Link>

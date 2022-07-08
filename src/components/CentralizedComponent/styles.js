@@ -16,6 +16,7 @@ export const StyledSection = styled.section`
   width: fit-content;
   padding: 25px 30px;
   border-radius: 10px;
+  box-shadow: 5px 5px 16px 5px rgba(0,0,0,0.89);
   figure{
     max-width: 444px;
   }
