@@ -39,4 +39,38 @@ export default createGlobalStyle`
     button {
         cursor: pointer;
     }
+
+    .modal {
+        position: relative;
+        overflow: auto;
+        
+        outline: none;
+        margin: 100px auto;
+        
+        padding: 20px;
+        width: 80%;
+        height: fit-content;
+        
+        background: rgb(255, 255, 255);
+        border-radius: 4px;
+        border: 1px solid rgb(204, 204, 204);
+    }
+    
+    @media screen and (min-width: 650px) {
+        .modal {
+            width: 60%;
+        }
+    }
+    
+    @media screen and (min-width: 800px) {
+        .modal {
+            width: 40%;
+        }
+    }
+    
+    @media screen and (min-width: 1080px) {
+        .modal {
+            width: 25%;
+        }
+    }
 `;

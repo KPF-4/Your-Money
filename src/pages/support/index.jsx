@@ -1,6 +1,4 @@
-import "./style.css"
-
-function Support(){
+const Support = () => {
     return(
         <div>
             

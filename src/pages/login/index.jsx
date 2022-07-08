@@ -1,11 +1,11 @@
 import Lottie from "react-lottie";
 import { Link } from "react-router-dom";
 import CentralizedComponent from "../../components/CentralizedComponent";
-import { LoginArea } from "../../components/LoginArea";
+import LoginArea from "../../components/LoginArea";
 import * as animationData from "./animation.json";
 import { FlexComponent } from "./styles";
 
-function Login() {
+const Login = () => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
