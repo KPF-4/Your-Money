@@ -1,17 +1,12 @@
-import { QuotationProvider } from "./quotation"
-import { CoinsProvider } from "./coins"
+import { QuotationProvider } from "./quotation";
+import { CoinsProvider } from "./coins";
 
-const Providers = ({children})=>{
+const Providers = ({ children }) => {
+  return (
+    <CoinsProvider>
+      <QuotationProvider>{children}</QuotationProvider>
+    </CoinsProvider>
+  );
+};
 
-    return(
-        <CoinsProvider>
-            <QuotationProvider>
-                {children}
-            </QuotationProvider>
-        </CoinsProvider>
-    ) 
-        
-    
-}
-
-export default Providers
+export default Providers;
