@@ -4,7 +4,7 @@ import GlobalStyle from "./styles/global";
 
 const App = () => {
   return (
-    <div className="App">
+    <>
       <GlobalStyle />
       <ToastContainer
           position="top-right"
@@ -18,7 +18,7 @@ const App = () => {
           pauseOnHover
           />
       <Routes />
-    </div>
+    </>
   );
 };
 
