@@ -12,9 +12,12 @@ import { Button } from "../Button/styles";
 import { CloseModalBtn } from "../CloseModalBtn/style";
 import { FlexComponent, FlexForm, Line } from "../LoginArea/styles";
 import { ModalHeader } from "./style";
+import ApiFake from "../../Service/api_fake";
 
 const FinancialPlanModal = () => {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(true);
+  const userToken = localStorage.getItem("@TOKEN")
+  const userID = localStorage.getItem("@ID")
 
   const [entryType, setEntryType] = useState("Entrada");
   const [categoryType, setCategoryType] = useState("Moradia");
@@ -29,14 +32,23 @@ const FinancialPlanModal = () => {
     "Outros",
   ];
 
+  
   const formSchema = yup.object().shape({
-    entryName: yup.string().required("Digite o nome da entrada"),
+    name: yup
+      .string()
+      .required("Digite o nome da entrada"),
+    
+    description: yup
+      .string()
+      .required("Digite a descrição da entrada"),
+    
+    value: yup
+      .string()
+      .required("Digite um valor"),
 
-    description: yup.string().required("Digite a descrição da entrada"),
-
-    amountValue: yup.string().required("Digite um valor"),
-
-    date: yup.string().required("Preencha com uma data"),
+    date: yup
+      .string()
+      .required("Preencha com uma data"),
   });
 
   const {
@@ -54,10 +66,24 @@ const FinancialPlanModal = () => {
   }
 
   const onSubmitFunction = (data) => {
-    data.entryType = entryType;
-    data.categoryType = categoryType;
+    const remainingData = {
+      userId: userID, 
+      entryType: entryType,
+      categoryType: categoryType
+    }
+    
+    
+    const config = {
+      headers: { Authorization: `Bearer ${userToken}` }
+    };
+    
+    const newData = Object.assign(data, remainingData)
 
-    console.log(data);
+    console.log(newData);
+    ApiFake
+      .post("/financeiro", newData, config)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
   };
 
   return (
@@ -82,8 +108,8 @@ const FinancialPlanModal = () => {
           <Input
             label="Nome da entrada:"
             placeholder="Digite o nome da entrada"
-            name="entryName"
-            error={errors.entryName}
+            name="name"
+            error={errors.name}
             register={register}
           />
 
@@ -97,16 +123,14 @@ const FinancialPlanModal = () => {
 
           <SelectInput
             label="Tipo de valor"
-            name="valueType"
-            error={errors.valueType}
+            name="entryType"
             setValue={setEntryType}
             inputOptions={valueTypeOptions}
           />
 
           <SelectInput
             label="Categoria"
-            name="category"
-            error={errors.category}
+            name="categoryType"
             setValue={setCategoryType}
             inputOptions={categoryTypeOptions}
           />
@@ -114,7 +138,7 @@ const FinancialPlanModal = () => {
           <Input
             label="Valor:"
             placeholder="R$"
-            name="amountValue"
+            name="value"
             error={errors.value}
             register={register}
           />
