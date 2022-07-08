@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 
 import Input from "../Input";
 import SelectInput from "../SelectInput";
-import { Button } from "../Button/styles";
+import Button from "../Button";
 import { CloseModalBtn } from "../CloseModalBtn/style";
 import { FlexComponent, FlexForm, Line } from "../LoginArea/styles";
 import { ModalHeader } from "./style";

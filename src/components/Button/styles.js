@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+export const StyledButton = styled.button`
   border: none;
   padding: ${(props) => props.padding || "10px"};
   background-color: ${(props) => props.background || "unset"};

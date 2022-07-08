@@ -6,7 +6,7 @@ import { StyledHeader } from "./style";
 
 const Header = () => {
   const [isLogged, setIsLogged] = useState(false);
-  const [token, setToken] = useState(localStorage.getItem("@TOKEN"));
+  const [token, setToken] = useState(localStorage.getItem("@YOURMONEY-TOKEN"));
   const redirectButtons = ["Simulador", "Cotação", "Notícias", "Suporte"];
 
   useEffect(() => {

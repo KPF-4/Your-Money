@@ -5,6 +5,7 @@ import { StyledDailyNewsList } from "./styles";
 
 const DailyNews = () => {
   const { articles } = useContext(DailyNewsContext);
+
   return (
     <section>
       <p></p>

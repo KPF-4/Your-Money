@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { FlexComponent, FlexForm, Line } from "./styles";
 import Input from "../Input";
 import { Link, useHistory } from "react-router-dom";
-import { Button } from "../Button/styles";
+import Button from "../Button";
 import ApiFake from "../../Service/api_fake";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -76,7 +76,7 @@ export const RegisterArea = () => {
     .post("/register", newData)
     .then((res) =>{
       const { accessToken } = res.data
-      localStorage.setItem("@TOKEN", JSON.stringify(accessToken))
+      localStorage.setItem("@YOURMONEY-TOKEN", JSON.stringify(accessToken))
       toast.success("Sucesso ao criar conta")
       setTimeout(() => {
         return history.push("/");

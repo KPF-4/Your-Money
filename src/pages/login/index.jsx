@@ -21,8 +21,6 @@ const Login = () => {
         <Lottie
           height={"auto"}
           options={defaultOptions}
-          isStopped={false}
-          isPaused={false}
         />
       </figure>
       <FlexComponent gap="16px">

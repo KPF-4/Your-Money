@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const DailyNewsContext = createContext([]);
 
@@ -177,12 +177,23 @@ const baseArticles = [
 export const DailyNewsProvider = ({ children }) => {
   const [articles, setArticles] = useState([]);
 
-  axios
-    .get(
-      "https://newsapi.org/v2/top-headlines?country=br&category=business&pageSize=10&apiKey=3e5fcc3e7b2542df9502601a00b3cae2"
-    )
-    .then((response) => setArticles(response.data.articles))
-    .catch(() => setArticles(baseArticles));
+  useEffect(() => {
+     localStorage.getItem("@NEWS") && setArticles(JSON.parse(localStorage.getItem("@NEWS")))
+  }, [])
+
+  if (!localStorage.getItem("@NEWS")) {
+    axios
+      .get(
+        "https://newsapi.org/v2/top-headlines?country=br&category=business&pageSize=10&apiKey=3e5fcc3e7b2542df9502601a00b3cae2"
+      )
+      .then((response) => {
+        localStorage.setItem("@NEWS", JSON.stringify(response.data.articles));
+        setArticles(response.data.articles);
+      })
+    .catch(() => {
+      localStorage.setItem("@NEWS", JSON.stringify(baseArticles));
+    });
+  }
 
   return (
     <DailyNewsContext.Provider value={{ articles }}>
