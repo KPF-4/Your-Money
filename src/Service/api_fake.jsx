@@ -1,7 +1,7 @@
-import axios from "axios"
+import axios from "axios";
 
 const ApiFake = axios.create({
-    baseURL:"https://your-money-kenzie.herokuapp.com" //"http://localhost:3001"
-})
+  baseURL: "https://your-money-kenzie.herokuapp.com", //"http://localhost:3001"
+});
 
-export default ApiFake
+export default ApiFake;

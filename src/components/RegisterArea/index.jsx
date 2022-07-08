@@ -70,15 +70,17 @@ export const RegisterArea = () => {
 
   const onSubmitFunction = (data) => {
     
-    const {confirmEmail, confirmPassword,...newdata} = data
+    const {confirmEmail, confirmPassword,...newData} = data
 
     ApiFake
-    .post("/register", newdata)
+    .post("/register", newData)
     .then((res) =>{
+      const { accessToken } = res.data
+      localStorage.setItem("@TOKEN", JSON.stringify(accessToken))
       toast.success("Sucesso ao criar conta")
       setTimeout(() => {
-        return history.push("/login");
-      }, 5000)
+        return history.push("/");
+      }, 2000)
     })
     .catch((err) => {
       err.response.data='Email already exists'?

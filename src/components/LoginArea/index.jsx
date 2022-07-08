@@ -29,14 +29,14 @@ export const LoginArea = () => {
     .post("/login",data)
     .then((res) => {
       const { accessToken } = res.data
-      localStorage.setItem("yourMonay", JSON.stringify(accessToken))
+      localStorage.setItem("@TOKEN", JSON.stringify(accessToken))
       toast.success("Sucesso ao acessar sua conta")
       setTimeout(() => {
         return history.push("/");
-      }, 5000)
+      }, 2000)
     })
     .catch((err) => {
-      toast.error("Email ou senha inválidos.")
+      toast.error("Email ou senha inválidos")
     })
     
   };
