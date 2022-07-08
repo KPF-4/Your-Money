@@ -1,26 +1,28 @@
+import { useEffect, useState } from "react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
-import LogoutBtn from "../Logout-btn";
-import LoginBtn from "../Login-btn";
 import { Link } from "react-router-dom";
-
-import "./style.css";
+import LoginLogoutBtn from "../LoginLogoutBtn";
+import { StyledHeader } from "./style";
 
 const Header = () => {
-  const token = localStorage.getItem("@TOKEN");
+  const [isLogged, setIsLogged] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("@TOKEN"));
   const redirectButtons = ["Simulador", "Cotação", "Notícias", "Suporte"];
 
+  useEffect(() => {
+
+    token ? setIsLogged(true) : setIsLogged(false);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
+
   return (
-    <header id="home-header">
+    <StyledHeader>
       <div id="header-container">
-        <nav id="principal-menu">
-          <AiOutlineMenuUnfold id="menu-icon" />
-          <Link to="/">
-            <button id="to-home-btn">
-              {" "}
-              Your <span> Money </span>{" "}
-            </button>
-          </Link>
-        </nav>
+        <AiOutlineMenuUnfold id="menu-icon" />
+        <Link to="/">
+          <h1>Your Money</h1>
+        </Link>
 
         <div id="links-area">
           <div id="redirectBtns-container">
@@ -37,15 +39,13 @@ const Header = () => {
             ))}
           </div>
 
-          <Link to="/login">
-            <div id="login-logout-container">
-              {token === null ? <LoginBtn /> : <LogoutBtn />}
-            </div>
-          </Link>
+          <div id="login-logout-container">
+            <LoginLogoutBtn setToken={setToken} isLogged={isLogged} />
+          </div>
         </div>
       </div>
-    </header>
+    </StyledHeader>
   );
-}
+};
 
-export default Header
+export default Header;

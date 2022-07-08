@@ -166,7 +166,6 @@ export const RegisterArea = () => {
           </Link>
         </FlexComponent>
       </FlexForm>
-      {/* <button onClick={() => console.log(errors)}>Erros</button> */}
     </section>
   );
 };

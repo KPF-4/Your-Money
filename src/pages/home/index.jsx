@@ -1,11 +1,11 @@
+import FinancialPlanModal from "../../components/FinancialPlanModal";
 import Header from "../../components/Header";
-import "./style.css";
 
-function Home() {
+const Home = () => {
   return (
     <div>
       <Header />
-
+      <FinancialPlanModal />
     </div>
   );
 }

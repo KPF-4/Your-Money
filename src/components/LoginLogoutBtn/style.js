@@ -1,4 +1,6 @@
-#logout-btn {
+import styled from "styled-components";
+
+export const StyledButton = styled.button`
     border: none;
     height: 40%;
 
@@ -6,8 +8,13 @@
     align-items: center;
     
     font-weight: bold;
-    font-size: 16px;;
+    font-size: 16px;
     font-family: 'Inter', sans-serif;
     
     background-color: white;
-}
+    
+    p {
+        display: flex;
+        align-items: center;
+    }
+`

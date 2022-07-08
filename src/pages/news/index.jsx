@@ -1,6 +1,4 @@
-import "./style.css"
-
-function News(){
+const News = () => {
     return(
         <div>
             
