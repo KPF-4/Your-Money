@@ -9,8 +9,11 @@ export default createGlobalStyle`
     }
     :root{
         --green: #008000;
+        --grey: #5A5858;
         --red: #FF0000;
+        --white: #ffffff;
         --black: #000000;
+        --blue-button: #3490DC;
     }
 
     h1 {

@@ -1,80 +1,87 @@
 import { useContext, useEffect, useState} from "react"
 import { QuotationContext } from "../../providers/quotation"
 import { CoinsContext } from "../../providers/coins";
-import { StyleForm, StyleQuotation, StyleSpan } from "./style";
+import { StyleForm, StyleQuotation, StyleResult, StyleSpan } from "./style";
 import { useForm } from "react-hook-form";
 
 export const Quotation = ()=>{
     const {register, handleSubmit} = useForm({shouldUseNativeValidation: true});
 
     const {coins} = useContext(CoinsContext);
-    const {quotation, listQuotation, setValueConvert} = useContext(QuotationContext);
+    const {setPlayQuot, quotation, listQuotation, valueConvert, setValueConvert} = useContext(QuotationContext);
     const names = Object.keys(listQuotation);
     const namesCoins = Object.keys(coins);
     const nameQuotation = Object.keys(quotation);
 
     const [inputValue, setInputValue] = useState(0);
     const [total, setTotal] = useState(0);
+    const [display, setDisplay]= useState(false)
 
+    console.log(display)
     const onSubmitConvert = async (data)=>{
-        setValueConvert(data.moeda);
-        setInputValue(data.value);
-        console.log(inputValue)
+        setInputValue(data.value)
+        await setValueConvert(data.moeda)
+        await setPlayQuot(true)
+        setDisplay(true)
     }
-
-    const TotalConvert = ()=>{
-        const quotationValue = quotation[nameQuotation]?.ask;
-        console.log(quotationValue)
-        setTotal(parseFloat(parseFloat(inputValue)/parseFloat(quotationValue)).toFixed(2));
-    }
-
+    
     useEffect(()=>{
-        TotalConvert()
-    },[inputValue])
+        setTotal(parseFloat(parseFloat(inputValue)*parseFloat(quotation[nameQuotation]?.ask)).toFixed(2));
+    },[quotation])
+
+    const handleBack = async ()=>{
+        await setPlayQuot(false)
+        setDisplay(false)
+    }
 
     return(
-        <StyleQuotation onSubmit={handleSubmit(onSubmitConvert)}> 
-            <StyleForm>
-                <h3>Conversão de Moeda</h3>
-                <input placeholder={"Valor"} {...register("value", {required:"Digite o valor desejado!"})}/>
-                <span>Converter de</span>
-                <select {...register("moeda")}>
-                    {namesCoins.map((el, index)=>
-                        <option key={index} value={el}>{el+" / "+coins[el]}</option>
-                    )}
-                </select>
-                <span>Converter para</span>
-                <select {...register("moeda")}>
-                    {namesCoins.map((el, index)=>
-                        <option key={index} value={el}>{el+" / "+coins[el]}</option>
-                    )}
-                </select>
-                <button type="submit">Converter</button>
-            </StyleForm>
-            {   total &&
-                <div>
-                    <span>{total}</span>
+        <>
+            <StyleQuotation> 
+                <h3 className="title">Cotação de Moedas</h3>
+                <div className="list-titles">
+                    <StyleSpan color="#008000">Compra</StyleSpan>
+                    <StyleSpan color="#FF0000">Venda</StyleSpan>
+                    <StyleSpan>Variação(%)</StyleSpan>
                 </div>
+                {names.map((el, index)=>
+                    <div key={index} className="list">
+                        <StyleSpan type="coin">{listQuotation[el].code+"/"+listQuotation[el].codein}</StyleSpan>
+                        <StyleSpan type="bid" color="#008000">{listQuotation[el].bid}</StyleSpan>
+                        <StyleSpan type="ask" color="#FF0000">{listQuotation[el].ask}</StyleSpan>
+                        <StyleSpan type="var" color={listQuotation[el].pctChange > 0?"#008000": "#FF0000"}>
+                            {parseFloat(listQuotation[el].pctChange).toFixed(2)+"%"}
+                        </StyleSpan>
+                    </div>
+                )}
+            </StyleQuotation>
+
+            {
+                display === true
+                ?
+                <StyleResult>
+                    <h3 className="title">Conversão de Moeda</h3>
+                    <span>{valueConvert} {inputValue}</span>
+                    <span>BRL {quotation[nameQuotation]?.ask}</span>
+                    <span>O valor convertido é: {parseFloat(total).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
+                    <button onClick={handleBack}>Voltar</button>
+                </StyleResult>
+                :
+                <StyleForm onSubmit={handleSubmit(onSubmitConvert)}>
+                    <h3 className="title">Conversão de Moeda</h3>
+                    <span>Selecione a Moeda</span>
+                    <select {...register("moeda")}>
+                        {namesCoins.map((el, index)=>
+                            <option key={index} value={el}>{el+" / "+coins[el]}</option>
+                            )}
+                    </select>
+                    <span>Qual o valor?</span>
+                    <div>
+                        <input placeholder={"Valor"} {...register("value", {required:"Digite o valor desejado!"})}/>
+                        <button type="submit">Converter</button>
+                    </div>
+                </StyleForm>
             }
-            <div className="title">
-                <h3>Cotação de Moedas</h3>
-            </div>
-            <div className="list-titles">
-                <StyleSpan color="#008000">Compra</StyleSpan>
-                <StyleSpan color="#FF0000">Venda</StyleSpan>
-                <StyleSpan>Variação(%)</StyleSpan>
-            </div>
-            {names.map((el, index)=>
-                <div key={index} className="list">
-                    <StyleSpan type="coin">{listQuotation[el].code+"/"+listQuotation[el].codein}</StyleSpan>
-                    <StyleSpan type="bid" color="#008000">{listQuotation[el].bid}</StyleSpan>
-                    <StyleSpan type="ask" color="#FF0000">{listQuotation[el].ask}</StyleSpan>
-                    <StyleSpan type="var" color={listQuotation[el].pctChange > 0?"#008000": "#FF0000"}>
-                        {parseFloat(listQuotation[el].pctChange).toFixed(2)+"%"}
-                    </StyleSpan>
-                </div>
-            )}
-        </StyleQuotation>
+        </>
     )
     
 }
