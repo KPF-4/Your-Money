@@ -77,7 +77,7 @@ export const RegisterArea = () => {
     .then((res) =>{
       toast.success("Sucesso ao criar conta")
       setTimeout(() => {
-        return history.push("/");
+        return history.push("/login");
       }, 5000)
     })
     .catch((err) => {
