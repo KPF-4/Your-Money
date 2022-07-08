@@ -14,7 +14,7 @@ import { FlexComponent, FlexForm, Line } from "../LoginArea/styles";
 import { ModalHeader } from "./style";
 
 const FinancialPlanModal = () => {
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
 
   const [entryType, setEntryType] = useState("Entrada");
   const [categoryType, setCategoryType] = useState("Moradia");
