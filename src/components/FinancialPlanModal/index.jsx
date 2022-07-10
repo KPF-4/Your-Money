@@ -12,9 +12,12 @@ import Button from "../Button";
 import { CloseModalBtn } from "../CloseModalBtn/style";
 import { FlexComponent, FlexForm, Line } from "../LoginArea/styles";
 import { ModalHeader } from "./style";
+import ApiFake from "../../Service/api_fake";
 
 const FinancialPlanModal = () => {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(true);
+  const userToken = localStorage.getItem("@TOKEN");
+  const userID = localStorage.getItem("@ID");
 
   const [entryType, setEntryType] = useState("Entrada");
   const [categoryType, setCategoryType] = useState("Moradia");
@@ -30,11 +33,11 @@ const FinancialPlanModal = () => {
   ];
 
   const formSchema = yup.object().shape({
-    entryName: yup.string().required("Digite o nome da entrada"),
+    name: yup.string().required("Digite o nome da entrada"),
 
     description: yup.string().required("Digite a descrição da entrada"),
 
-    amountValue: yup.string().required("Digite um valor"),
+    value: yup.string().required("Digite um valor"),
 
     date: yup.string().required("Preencha com uma data"),
   });
@@ -51,13 +54,24 @@ const FinancialPlanModal = () => {
     } else {
       setModal(false);
     }
-  }
+  };
 
   const onSubmitFunction = (data) => {
-    data.entryType = entryType;
-    data.categoryType = categoryType;
+    const remainingData = {
+      userId: userID,
+      entryType: entryType,
+      categoryType: categoryType,
+    };
 
-    console.log(data);
+    const config = {
+      headers: { Authorization: `Bearer ${userToken}` },
+    };
+
+    const newData = Object.assign(data, remainingData);
+
+    ApiFake.post("/financeiro", newData, config)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -70,9 +84,7 @@ const FinancialPlanModal = () => {
       <ModalHeader>
         <FlexComponent justify="space-between" wrap="now-wrap">
           <h3> Planejamento Financeiro </h3>
-          <CloseModalBtn onClick={handleModal}>
-            X
-          </CloseModalBtn>
+          <CloseModalBtn onClick={handleModal}>X</CloseModalBtn>
         </FlexComponent>
         <Line />
       </ModalHeader>
@@ -82,8 +94,8 @@ const FinancialPlanModal = () => {
           <Input
             label="Nome da entrada:"
             placeholder="Digite o nome da entrada"
-            name="entryName"
-            error={errors.entryName}
+            name="name"
+            error={errors.name}
             register={register}
           />
 
@@ -97,16 +109,14 @@ const FinancialPlanModal = () => {
 
           <SelectInput
             label="Tipo de valor"
-            name="valueType"
-            error={errors.valueType}
+            name="entryType"
             setValue={setEntryType}
             inputOptions={valueTypeOptions}
           />
 
           <SelectInput
             label="Categoria"
-            name="category"
-            error={errors.category}
+            name="categoryType"
             setValue={setCategoryType}
             inputOptions={categoryTypeOptions}
           />
@@ -114,7 +124,7 @@ const FinancialPlanModal = () => {
           <Input
             label="Valor:"
             placeholder="R$"
-            name="amountValue"
+            name="value"
             error={errors.value}
             register={register}
           />

@@ -27,8 +27,10 @@ const LoginArea = () => {
   const onSubmitFunction = (data) => {
     ApiFake.post("/login", data)
       .then((res) => {
-        const { accessToken } = res.data;
-        localStorage.setItem("@YOURMONEY-TOKEN", JSON.stringify(accessToken));
+        const { accessToken, user } = res.data;
+        localStorage.clear();
+        localStorage.setItem("@TOKEN", accessToken);
+        localStorage.setItem("@ID", JSON.stringify(user.id));
         toast.success("Sucesso ao acessar sua conta");
         setTimeout(() => {
           return history.push("/");
