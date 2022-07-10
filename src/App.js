@@ -1,5 +1,4 @@
 import { ToastContainer } from "react-toastify";
-import FinancialPlanModal from "./components/FinancialPlanModal";
 import Routes from "./routes";
 import GlobalStyle from "./styles/global";
 
