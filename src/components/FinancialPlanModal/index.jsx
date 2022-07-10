@@ -16,8 +16,8 @@ import ApiFake from "../../Service/api_fake";
 
 const FinancialPlanModal = () => {
   const [modal, setModal] = useState(true);
-  const userToken = localStorage.getItem("@TOKEN");
-  const userID = localStorage.getItem("@ID");
+  const userToken = localStorage.getItem("@YOURMONEY-TOKEN");
+  const userID = localStorage.getItem("@YOURMONEY-ID");
 
   const [entryType, setEntryType] = useState("Entrada");
   const [categoryType, setCategoryType] = useState("Moradia");

@@ -7,7 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import Button from "../Button";
 import ApiFake from "../../Service/api_fake";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 export const RegisterArea = () => {
   const lowerCaseRegex = /(?=.*[a-z])/;
@@ -66,28 +66,26 @@ export const RegisterArea = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
-  const history = useHistory()
+  const history = useHistory();
 
   const onSubmitFunction = (data) => {
-    
-    const {confirmEmail, confirmPassword,...newData} = data
+    const { confirmEmail, confirmPassword, ...newData } = data;
 
-    ApiFake
-    .post("/register", newData)
-    .then((res) =>{
-      const { accessToken } = res.data
-      localStorage.setItem("@YOURMONEY-TOKEN", JSON.stringify(accessToken))
-      toast.success("Sucesso ao criar conta")
-      setTimeout(() => {
-        return history.push("/");
-      }, 2000)
-    })
-    .catch((err) => {
-      err.response.data='Email already exists'?
-      toast.error("Usuário já cadastrado, tente outro email"):
-      toast.error("Erro ao criar conta, tente outro email")
-    })
-    
+    ApiFake.post("/register", newData)
+      .then((res) => {
+        const { accessToken, user } = res.data;
+        localStorage.setItem("@YOURMONEY-TOKEN", accessToken);
+        localStorage.setItem("@YOURMONEY-ID", JSON.stringify(user.id));
+        toast.success("Sucesso ao criar conta");
+        setTimeout(() => {
+          return history.push("/");
+        }, 2000);
+      })
+      .catch((err) => {
+        err.response.data = "Email already exists"
+          ? toast.error("Usuário já cadastrado, tente outro email")
+          : toast.error("Erro ao criar conta, tente outro email");
+      });
   };
 
   return (
