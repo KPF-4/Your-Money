@@ -5,7 +5,8 @@ import { StyledButton } from "./style";
 const LoginLogoutBtn = ({ isLogged, setToken }) => {
 
   const removeToken = () => {
-    localStorage.removeItem("@TOKEN")
+    localStorage.removeItem("@YOURMONEY-USER")
+    localStorage.removeItem("@YOURMONEY-TOKEN")
     setToken("")
   }
 
