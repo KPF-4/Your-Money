@@ -8,12 +8,12 @@ export const GraficsProvider = ({ children }) => {
   const [data, setData] = useState([]);
 
   const token = localStorage.getItem("@YOURMONEY-TOKEN");
-  const id = localStorage.getItem("@YOURMONEY-USER");
+  const id = localStorage.getItem("@YOURMONEY-ID");
 
   const requisition = async () => {
     await ApiFake.get(`/financeiro?userId=${id}`, {
       headers: {
-        Authorization: `Bearer ${JSON.parse(token)}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
