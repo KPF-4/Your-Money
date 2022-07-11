@@ -1,12 +1,15 @@
 import { RiLoginBoxLine, RiLogoutBoxLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { StyledButton } from "./style";
 
 const LoginLogoutBtn = ({ isLogged, setToken }) => {
 
+  const history = useHistory()
+
   const removeToken = () => {
     localStorage.removeItem("@YOURMONEY-USER")
     localStorage.removeItem("@YOURMONEY-TOKEN")
+    history.push("/")
     setToken("")
   }
 
