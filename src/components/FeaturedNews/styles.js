@@ -19,7 +19,7 @@ export const FeaturedNewsCard = styled.li`
     color: #d42126;
     font-family: "Inter";
     font-size: 20px;
-    width: 20px;
+    min-width: 20px;
   }
 
   a {

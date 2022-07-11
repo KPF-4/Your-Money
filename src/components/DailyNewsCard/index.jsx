@@ -12,7 +12,6 @@ const DailyNewsCard = ({ article }) => {
           <p>{article.description}</p>
         </div>
       </a>
-      <button onClick={()=>console.log(article)}>A</button>
     </StyledDailyNewsCard>
   );
 };

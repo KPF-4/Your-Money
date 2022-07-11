@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { DailyNewsContext } from "../../providers/dailyNews";
 import DailyNewsCard from "../DailyNewsCard";
-import { Line, StyledDailyNewsList } from "./styles";
+import { DailyNewsFeatured, Line, StyledDailyNewsList } from "./styles";
 
 const DailyNews = () => {
   const { articles } = useContext(DailyNewsContext);
@@ -12,15 +12,20 @@ const DailyNews = () => {
         <h2>Noticias diárias</h2>
       </Line>
 
-      <a href={articles[6].url} target="_blank" rel="noreferrer">
-        <figure>
-          <img src={articles[6].urlToImage} alt="" />
-        </figure>
-        <div>
-          <h3>{articles[6].title}</h3>
-          <p>{articles[6].description}</p>
-        </div>
-      </a>
+      {articles[6] && (
+        <DailyNewsFeatured>
+          <a href={articles[6].url} target="_blank" rel="noreferrer">
+            <figure>
+              <img src={articles[6].urlToImage} alt="" />
+            </figure>
+            <div>
+              <h3>{articles[6].title}</h3>
+              <span>{articles[6].description}</span>
+              <span>{articles[6].content.split("…")[0]+"…"}<span>Ler Mais</span></span>
+            </div>
+          </a>
+        </DailyNewsFeatured>
+      )}
 
       <StyledDailyNewsList>
         {articles.map((article, index) => (
