@@ -5,15 +5,13 @@ import { GraficsProvider } from "./grafics";
 
 const Providers = ({ children }) => {
   return (
-    <CoinsProvider>
+    <GraficsProvider> 
+      <CoinsProvider>
         <QuotationProvider>
-          <DailyNewsProvider>
-            <GraficsProvider>
-              {children}
-            </GraficsProvider>
-          </DailyNewsProvider>
+          <DailyNewsProvider>{children}</DailyNewsProvider>
         </QuotationProvider>
       </CoinsProvider>
+    </GraficsProvider>
   );
 };
 

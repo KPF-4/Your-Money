@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
 import ApiFake from "../../Service/api_fake";
 
 export const GraficsContext = createContext([])
@@ -20,18 +19,24 @@ export const GraficsProvider = ({children})=>{
         }
             
         )
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+        .then(response => {
+            setData(response.data)
+            setPlayDashboard(false)
+
+        })
+        .catch(error => {
+            console.log(error)
+            setPlayDashboard(false)
+        })
     }
 
     useEffect(()=>{
         playDashboad&&
             requisition()
-            setPlayDashboard(false)
     },[playDashboad])
 
     return(
-        <GraficsContext.Provider value={{setPlayDashboard, data, setData}}>
+        <GraficsContext.Provider value={{setPlayDashboard, data}}>
             {children}
         </GraficsContext.Provider>
     )
