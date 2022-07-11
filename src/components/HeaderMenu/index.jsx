@@ -23,7 +23,6 @@ const HeaderMenu = ({ showMenu }) => {
   }, [showMenu]);
 
   const history = useHistory();
-  console.log(history.location.pathname);
 
   return (
     <StyledMenu closeMenu={closeMenu} showMenu={showMenu}>

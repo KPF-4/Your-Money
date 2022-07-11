@@ -7,7 +7,7 @@ export const StyledHeader = styled.header`
   top: ${props=> props.scroll === "up" ? "0" : "-60px"};
   background-color: #fff;
   transition: 0.2s;
-  z-index: 1;
+  z-index: 2;
 
   display: flex;
   align-items: center;

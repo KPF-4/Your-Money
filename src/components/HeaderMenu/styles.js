@@ -15,7 +15,7 @@ export const StyledMenu = styled.section`
   font-weight: 500;
   box-shadow: 0px 7px 8px 0px #00000040;
   transition: 0.3s;
-  z-index: -1;
+  z-index: 1;
 
   animation: ${(props) =>
     props.showMenu ? "slide-down 0.3s" : "slide-up 0.3s"};
