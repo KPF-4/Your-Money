@@ -1,9 +1,11 @@
-const Support = () => {
-    return(
-        <div>
-            
-        </div>
-    )
-}
+import Header from "../../components/Header";
 
-export default Support
+const Support = () => {
+  return (
+    <div>
+      <Header />
+    </div>
+  );
+};
+
+export default Support;

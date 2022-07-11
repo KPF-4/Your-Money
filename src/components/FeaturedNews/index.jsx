@@ -33,7 +33,7 @@ const FeaturedNews = () => {
         </Line>
       <FeaturedNewsArea>
         {news?.map((featuredNews, index) => (
-          <FeaturedNewsCard>
+          <FeaturedNewsCard key={index}>
             <span>{index+1}. </span>
             <a href={featuredNews.link}>{featuredNews.title}</a>
           </FeaturedNewsCard>

@@ -1,25 +1,35 @@
+import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { ScrollContext } from "../../providers/scroll";
+import HeaderMenu from "../HeaderMenu";
 import LoginLogoutBtn from "../LoginLogoutBtn";
 import { StyledHeader } from "./style";
 
 const Header = () => {
   const [isLogged, setIsLogged] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("@YOURMONEY-TOKEN"));
   const redirectButtons = ["Simulador", "Cotação", "Notícias", "Suporte"];
 
-  useEffect(() => {
+  const { scroll } = useContext(ScrollContext);
 
+  useEffect(() => {
     token ? setIsLogged(true) : setIsLogged(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
+  const handleMenu = (event) => {
+    setShowMenu(!showMenu);
+  };
+
   return (
-    <StyledHeader>
+    <StyledHeader rotation={showMenu} scroll={scroll}>
       <div id="header-container">
-        <AiOutlineMenuUnfold id="menu-icon" />
+        <AiOutlineMenuUnfold onClick={handleMenu} id="menu-icon" />
+
         <Link to="/">
           <h1>Your Money</h1>
         </Link>
@@ -44,6 +54,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <HeaderMenu showMenu={showMenu} />
     </StyledHeader>
   );
 };

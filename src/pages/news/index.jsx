@@ -1,9 +1,11 @@
-const News = () => {
-    return(
-        <div>
-            
-        </div>
-    )
-}
+import Header from "../../components/Header";
 
-export default News
+const News = () => {
+  return (
+    <div>
+      <Header />
+    </div>
+  );
+};
+
+export default News;
