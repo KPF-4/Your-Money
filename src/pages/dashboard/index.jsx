@@ -5,11 +5,10 @@ import Header from "../../components/Header"
 const Dashboard = ()=>{
 
     const token = localStorage.getItem("@YOURMONEY-TOKEN")
-    const id = localStorage.getItem("@YOURMONEY-USER")
 
     const history = useHistory()
 
-    if(token && id){
+    if(token){
         return(
             <>
                 <Header/>
