@@ -5,9 +5,8 @@ export const StyledHeader = styled.header`
   height: 60px;
   position: sticky;
   top: ${props=> props.scroll === "up" ? "0" : "-60px"};
-  background-color: #fff;
   transition: 0.2s;
-  z-index: 2;
+  z-index: 1;
 
   display: flex;
   align-items: center;
@@ -17,7 +16,9 @@ export const StyledHeader = styled.header`
   background-color: #fff;
 
   #header-container {
+    background-color: #fff;
     width: 80%;
+    height: 100%;
 
     display: flex;
     align-items: center;
