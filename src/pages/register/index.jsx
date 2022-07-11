@@ -2,7 +2,7 @@ import CentralizedComponent from "../../components/CentralizedComponent";
 import { RegisterArea } from "../../components/RegisterArea";
 import { FlexComponent } from "./styles";
 import Lottie from "react-lottie";
-import * as animationData from "./animation.json";
+import * as animationData from "../../assets/json-animate/Register-animation.json";
 import { Link } from "react-router-dom";
 
 const Register = () => {

@@ -4,6 +4,7 @@ export const FlexComponent = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${(props) => props.gap || "0"};
+  
 
   p {
     font-family: 'Lobster';

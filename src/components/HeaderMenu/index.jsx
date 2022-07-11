@@ -1,6 +1,6 @@
 import { Line, StyledMenu } from "./styles";
 import { GoGraph } from "react-icons/go";
-import { BsGraphUp, BsChatLeftDots } from "react-icons/bs";
+import { BsGraphUp, BsHeadset } from "react-icons/bs";
 import { BiNews } from "react-icons/bi";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -58,7 +58,7 @@ const HeaderMenu = ({ showMenu }) => {
           </div>
           <div>
             <Link to="/suporte">
-              <BsChatLeftDots />
+              <BsHeadset />
               <p>Suporte</p>
               <span></span>
             </Link>
@@ -89,7 +89,7 @@ const HeaderMenu = ({ showMenu }) => {
           </div>
           <div>
             <Link to="/suporte">
-              <BsChatLeftDots />
+              <BsHeadset />
               <p>Suporte</p>
               <span></span>
             </Link>

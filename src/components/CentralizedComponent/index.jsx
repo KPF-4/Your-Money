@@ -1,9 +1,9 @@
 import { StyledBackground, StyledSection } from "./styles";
 
-const CentralizedComponent = ({ children }) => {
+const CentralizedComponent = ({ children, loginArea }) => {
   return (
     <StyledBackground>
-      <StyledSection>{children}</StyledSection>
+      <StyledSection loginArea={loginArea}>{children}</StyledSection>
     </StyledBackground>
   );
 };

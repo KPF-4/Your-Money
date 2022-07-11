@@ -2,7 +2,7 @@ import Lottie from "react-lottie";
 import { Link } from "react-router-dom";
 import CentralizedComponent from "../../components/CentralizedComponent";
 import LoginArea from "../../components/LoginArea";
-import * as animationData from "./animation.json";
+import * as animationData from "../../assets/json-animate/Login-animation.json";
 import { FlexComponent } from "./styles";
 
 const Login = () => {
@@ -16,14 +16,14 @@ const Login = () => {
   };
 
   return (
-    <CentralizedComponent>
+    <CentralizedComponent loginArea={true} >
       <figure>
         <Lottie
           height={"auto"}
           options={defaultOptions}
         />
       </figure>
-      <FlexComponent gap="16px">
+      <FlexComponent gap="1rem">
         <Link to="/">
           <h1>Your Money</h1>
         </Link>
