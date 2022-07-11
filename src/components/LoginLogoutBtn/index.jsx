@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { RiLoginBoxLine, RiLogoutBoxLine } from "react-icons/ri";
+import { RiLoginBoxLine } from "react-icons/ri";
 import { BiUser } from "react-icons/bi";
 import { Link, useHistory } from "react-router-dom";
 import { StyledButton, UserOptions } from "./style";
