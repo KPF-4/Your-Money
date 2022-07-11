@@ -24,15 +24,15 @@ const LoginArea = () => {
 
   const history = useHistory();
 
-  const onSubmitFunction = (data) => {
-    ApiFake.post("/login", data)
+  const onSubmitFunction = async (data) => {
+    await ApiFake.post("/login", data)
       .then((res) => {
         const { accessToken, user } = res.data;
         localStorage.setItem("@YOURMONEY-TOKEN", accessToken);
         localStorage.setItem("@YOURMONEY-ID", JSON.stringify(user.id));
         toast.success("Sucesso ao acessar sua conta");
         setTimeout(() => {
-          return history.push("/");
+          return history.push("/dashboard");
         }, 2000);
       })
       .catch((err) => {

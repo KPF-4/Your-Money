@@ -5,12 +5,17 @@ import Login from "../pages/login";
 import Register from "../pages/register";
 import News from "../pages/news";
 import Support from "../pages/support";
+import Dashboard from "../pages/dashboard";
 
 const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
         <Home />
+      </Route>
+
+      <Route exact path="/dashboard">
+        <Dashboard />
       </Route>
 
       <Route exact path="/login">

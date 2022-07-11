@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { RiLoginBoxLine } from "react-icons/ri";
+import { RiLoginBoxLine, RiLogoutBoxLine } from "react-icons/ri";
 import { BiUser } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { StyledButton, UserOptions } from "./style";
 
 const LoginLogoutBtn = ({ isLogged, setToken }) => {
   const [showOptions, setShowOptions] = useState(false);
 
+  const history = useHistory()
+
   const removeToken = () => {
     localStorage.removeItem("@YOURMONEY-TOKEN");
     localStorage.removeItem("@YOURMONEY-ID");
+    history.push("/")
     setToken("");
   };
 
