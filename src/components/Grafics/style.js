@@ -18,12 +18,14 @@ export const StyleGrafics = styled.section`
         padding: 1rem;
         gap: .5rem;
     }
+
     .container-grafic{
         width: 100vw;
         max-width: 100%;
         display: flex;
         justify-content: center;
     }
+
     .grafic{
         width: 100vw;
         max-width: 60%;
@@ -35,6 +37,7 @@ export const StyleGrafics = styled.section`
         box-sizing: border-box;
         
     }
+
     .grafic-evolucao{
         width: 100vw;
         max-width: 90%;
@@ -45,12 +48,14 @@ export const StyleGrafics = styled.section`
         align-items: center;
         box-sizing: border-box;
     }
+
     .filtros{
         display: flex;
         justify-content: flex-start;
         flex-direction: column;
         gap: .5rem;
     }
+
     .grafic-name{
         font-size: 1rem;
         font-weight: 700;
@@ -58,6 +63,7 @@ export const StyleGrafics = styled.section`
         width: 100vw;
         max-width: 60%;
     }
+    
     select{
         height: 2rem;
         max-width: 60%;
