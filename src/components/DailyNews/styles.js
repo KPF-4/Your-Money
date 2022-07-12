@@ -9,6 +9,7 @@ export const StyledDailyNewsList = styled.ul`
 `;
 
 export const Line = styled.div`
+  margin-top: 20px;
   border-bottom: 1px solid #000;
   width: ${(props) => props.width || "100%"};
   display: flex;

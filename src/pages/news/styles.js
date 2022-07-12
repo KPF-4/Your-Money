@@ -6,7 +6,6 @@ export const NewsAreaMain = styled.main`
   align-items: center;
   justify-content: space-between;
   min-height: 100vh;
-  margin-top: 20px;
 `;
 
 export const DailyNewsArea = styled.div`
