@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ScrollContext } from "../../providers/scroll";
 import HeaderMenu from "../HeaderMenu";
 import LoginLogoutBtn from "../LoginLogoutBtn";
@@ -12,8 +12,8 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("@YOURMONEY-TOKEN"));
   const redirectButtons = ["Simulador", "Cotação", "Notícias", "Suporte"];
-
   const { scroll } = useContext(ScrollContext);
+  const history = useHistory();
 
   useEffect(() => {
     token ? setIsLogged(true) : setIsLogged(false);
@@ -37,11 +37,7 @@ const Header = () => {
         <div id="links-area">
           <div id="redirectBtns-container">
             {redirectButtons.map((element, index) => {
-              return element === "Cotação" ? (
-                <a key={index} href="#cotacao">
-                  <button className="redirectBtn">{element}</button>
-                </a>
-              ) : (
+              return element !== "Cotação" ? (
                 <Link
                   key={index}
                   to={
@@ -53,6 +49,14 @@ const Header = () => {
                           .toLowerCase()
                   }
                 >
+                  <button className="redirectBtn">{element}</button>
+                </Link>
+              ) : history.location.pathname === "/" ? (
+                <a key={index} href="#cotacao">
+                  <button className="redirectBtn">{element}</button>
+                </a>
+              ) : (
+                <Link key={index} to="/">
                   <button className="redirectBtn">{element}</button>
                 </Link>
               );

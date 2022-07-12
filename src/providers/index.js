@@ -3,6 +3,7 @@ import { CoinsProvider } from "./coins";
 import { DailyNewsProvider } from "./dailyNews";
 import { ScrollProvider } from "./scroll";
 import { GraficsProvider } from "./grafics";
+import { FeaturedNewsProvider } from "./featuredNews";
 
 const Providers = ({ children }) => {
   return (
@@ -10,7 +11,9 @@ const Providers = ({ children }) => {
       <CoinsProvider>
         <QuotationProvider>
           <DailyNewsProvider>
-            <ScrollProvider>{children}</ScrollProvider>
+            <FeaturedNewsProvider>
+              <ScrollProvider>{children}</ScrollProvider>
+            </FeaturedNewsProvider>
           </DailyNewsProvider>
         </QuotationProvider>
       </CoinsProvider>

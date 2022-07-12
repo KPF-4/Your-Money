@@ -29,3 +29,9 @@ export const FeaturedNewsCard = styled.li`
     font-size: 14px;
   }
 `;
+
+
+export const WeklyNewsArea = styled.ul`
+  display: flex;
+  flex-direction: column;
+`

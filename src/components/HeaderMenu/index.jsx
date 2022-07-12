@@ -26,7 +26,38 @@ const HeaderMenu = ({ showMenu, handleMenu }) => {
 
   return (
     <StyledMenu closeMenu={closeMenu} showMenu={showMenu}>
-      {history.location.pathname === "/dashboard" ? (
+      {history.location.pathname === "/" ? (
+        <>
+          <div>
+            <Link to="/dashboard">
+              <GoGraph />
+              <p>Simulador</p>
+              <span></span>
+            </Link>
+          </div>
+          <div>
+            <a href="#cotacao" onClick={handleMenu}>
+              <BsGraphUp />
+              <p>Cotação</p>
+              <span></span>
+            </a>
+          </div>
+          <div>
+            <Link to="/noticias">
+              <BiNews />
+              <p>Notícias</p>
+              <span></span>
+            </Link>
+          </div>
+          <div>
+            <Link to="/suporte">
+              <BsHeadset />
+              <p>Suporte</p>
+              <span></span>
+            </Link>
+          </div>
+        </>
+      ) : (
         <>
           <div>
             <Link to="/">
@@ -48,37 +79,6 @@ const HeaderMenu = ({ showMenu, handleMenu }) => {
               <p>Cotação</p>
               <span></span>
             </Link>
-          </div>
-          <div>
-            <Link to="/noticias">
-              <BiNews />
-              <p>Notícias</p>
-              <span></span>
-            </Link>
-          </div>
-          <div>
-            <Link to="/suporte">
-              <BsHeadset />
-              <p>Suporte</p>
-              <span></span>
-            </Link>
-          </div>
-        </>
-      ) : (
-        <>
-          <div>
-            <Link to="/dashboard">
-              <GoGraph />
-              <p>Simulador</p>
-              <span></span>
-            </Link>
-          </div>
-          <div>
-            <a href="#cotacao" onClick={handleMenu}>
-              <BsGraphUp />
-              <p>Cotação</p>
-              <span></span>
-            </a>
           </div>
           <div>
             <Link to="/noticias">
