@@ -13,9 +13,7 @@ import { CloseModalBtn } from "../CloseModalBtn/style";
 import { FlexComponent, FlexForm, Line } from "../LoginArea/styles";
 import { ModalHeader } from "./style";
 
-const FinancialPlanModal = () => {
-  const [modal, setModal] = useState(false);
-
+export const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanModal} ) => {
   const [entryType, setEntryType] = useState("Entrada");
   const [categoryType, setCategoryType] = useState("Moradia");
 
@@ -45,32 +43,24 @@ const FinancialPlanModal = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
-  const handleModal = () => {
-    if (modal === false) {
-      setModal(true);
-    } else {
-      setModal(false);
-    }
-  }
-
   const onSubmitFunction = (data) => {
     data.entryType = entryType;
     data.categoryType = categoryType;
 
-    console.log(data);
+    console.log(data)
   };
 
   return (
     <Modal
       className="modal"
       contentLabel="onRequestClose"
-      isOpen={modal}
-      onRequestClose={handleModal}
+      isOpen={financialPlanModal}
+      onRequestClose={handleFinancialPlanModal}
     >
       <ModalHeader>
         <FlexComponent justify="space-between" wrap="now-wrap">
           <h3> Planejamento Financeiro </h3>
-          <CloseModalBtn onClick={handleModal}>
+          <CloseModalBtn onClick={() => handleFinancialPlanModal()}>
             X
           </CloseModalBtn>
         </FlexComponent>
@@ -135,5 +125,3 @@ const FinancialPlanModal = () => {
     </Modal>
   );
 };
-
-export default FinancialPlanModal;

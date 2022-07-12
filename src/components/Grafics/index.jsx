@@ -26,7 +26,7 @@ ChartJS.register(
     Title,
 )
 
-export const Grafics= ()=>{
+export const Grafics = ()=>{
     const token = localStorage.getItem("@YOURMONEY-TOKEN");
     const {setPlayDashboard, data} = useContext(GraficsContext);
     const [inputMonth, setInputMonth] = useState("Todos");
@@ -36,6 +36,7 @@ export const Grafics= ()=>{
     if(data.length < 1 && token){
         setPlayDashboard(true)
     }
+    
     const colors = ["rgba(0, 128, 0, 1)", "rgba(255, 0, 0, 1)", "rgba(52, 144, 220, 1)", "rgba(250, 253, 15, 1)", "rgba(255, 134, 158,1)", "rgba(255, 120, 0, 1)"]
     const expenses = data.filter((item)=>(inputMonth !=="Todos" ? parseInt(new Date(item.data).getMonth()+1) === parseInt(inputMonth): true) && item.tipo === "Gasto")
     const incomes = data.filter((item)=>(inputMonth !=="Todos" ? parseInt(new Date(item.data).getMonth()+1) === parseInt(inputMonth): true) && item.tipo === "Ganho")
@@ -194,7 +195,7 @@ export const Grafics= ()=>{
                     </div>
                 </>
             )
-        }else if (inputGraficos === "Gastos por categoria"){
+        } else if (inputGraficos === "Gastos por categoria"){
             return (
                 <>
                     <div className="filtros">    
@@ -208,7 +209,7 @@ export const Grafics= ()=>{
                     </div>
                 </>
             )
-        }else if (inputGraficos === "Ganhos por categoria"){
+        } else if (inputGraficos === "Ganhos por categoria"){
             return (
                 <>
                     <div className="filtros">    
@@ -226,7 +227,7 @@ export const Grafics= ()=>{
     }
     
 
-    return(
+    return (
         <StyleGrafics>
             <h2>Gráficos Financeiros</h2>
             <section className="container-Grafics">

@@ -3,7 +3,7 @@ import ApiFake from "../../Service/api_fake";
 
 export const GraficsContext = createContext([])
 
-export const GraficsProvider = ({children})=>{
+export const GraficsProvider = ( {children} ) => {
     const [playDashboad, setPlayDashboard] = useState(false)
     const [data, setData] = useState([])
 
