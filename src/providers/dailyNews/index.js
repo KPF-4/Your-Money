@@ -184,7 +184,7 @@ export const DailyNewsProvider = ({ children }) => {
   if (!localStorage.getItem("@NEWS")) {
     axios
       .get(
-        "https://newsapi.org/v2/top-headlines?country=br&category=business&pageSize=10&apiKey=3e5fcc3e7b2542df9502601a00b3cae2"
+        "https://newsapi.org/v2/top-headlines?country=br&category=business&pageSize=12&apiKey=3e5fcc3e7b2542df9502601a00b3cae2"
       )
       .then((response) => {
         localStorage.setItem("@NEWS", JSON.stringify(response.data.articles));

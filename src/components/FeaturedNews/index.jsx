@@ -35,7 +35,7 @@ const FeaturedNews = () => {
         {news?.map((featuredNews, index) => (
           <FeaturedNewsCard key={index}>
             <span>{index+1}. </span>
-            <a href={featuredNews.link}>{featuredNews.title}</a>
+            <a href={featuredNews.link} target="_blank" rel="noreferrer">{featuredNews.title}</a>
           </FeaturedNewsCard>
         ))}
       </FeaturedNewsArea>
