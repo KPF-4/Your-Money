@@ -1,17 +1,17 @@
 import { useContext } from "react";
-import { NewsArea } from "../../pages/news/styles";
 import { FeaturedNewsContext } from "../../providers/featuredNews";
+import { WeeklyNewsCard } from "../WeeklyNewsCard";
 import { FeaturedNewsArea, FeaturedNewsCard, Line } from "./styles";
 
 const FeaturedNews = () => {
-  const {newsFeatured} = useContext(FeaturedNewsContext)
+  const { newsFeatured, news } = useContext(FeaturedNewsContext);
 
   return (
     <section>
-      <Line width="70%">
-        <h3>Noticias em Destaque</h3>
-      </Line>
       <FeaturedNewsArea>
+        <Line width="70%">
+          <h3>Noticias em Destaque</h3>
+        </Line>
         {newsFeatured?.map((featuredNews, index) => (
           <FeaturedNewsCard key={index}>
             <span>{index + 1}. </span>
@@ -22,13 +22,14 @@ const FeaturedNews = () => {
         ))}
       </FeaturedNewsArea>
 
-      <Line width="70%">
-        <h3>Noticias</h3>
-      </Line>
-      <NewsArea>
-
-      </NewsArea>
-
+      <FeaturedNewsArea>
+        <Line width="70%">
+          <h3>Noticias</h3>
+        </Line>
+        {news?.map((article, index) => (
+          <WeeklyNewsCard key={index} article={article} />
+        ))}
+      </FeaturedNewsArea>
     </section>
   );
 };
