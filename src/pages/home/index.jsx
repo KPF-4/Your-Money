@@ -17,7 +17,7 @@ const Home = () => {
   };
 
   return (
-    <StyledHome>
+    <StyledHome id="home">
       <Header />
       <div className="container-home">
         <div className="cotacao-simualdor">
@@ -28,7 +28,7 @@ const Home = () => {
             <Quotation />
           </div>
           <div className="simulador">
-            <p>Simulador</p>
+            <p id="simulador">Simulador</p>
           </div>
         </div>
         <NewsArea />

@@ -6,7 +6,7 @@ import { NewsAreaMain, NewsContent } from "./styles";
 const News = () => {
   return (
     <>
-      <NewsAreaMain>
+      <NewsAreaMain id="noticias">
         <Header />
         <NewsContent>
           <NewsArea />
