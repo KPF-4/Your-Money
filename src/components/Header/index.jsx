@@ -21,7 +21,7 @@ const Header = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
-  const handleMenu = (event) => {
+  const handleMenu = () => {
     setShowMenu(!showMenu);
   };
 
@@ -36,17 +36,27 @@ const Header = () => {
 
         <div id="links-area">
           <div id="redirectBtns-container">
-            {redirectButtons.map((element, index) => (
-              <Link
-                key={index}
-                to={element
-                  .normalize("NFD")
-                  .replace(/[\u0300-\u036f]/g, "")
-                  .toLowerCase()}
-              >
-                <button className="redirectBtn">{element}</button>
-              </Link>
-            ))}
+            {redirectButtons.map((element, index) => {
+              return element === "Cotação" ? (
+                <a key={index} href="#cotacao">
+                  <button className="redirectBtn">{element}</button>
+                </a>
+              ) : (
+                <Link
+                  key={index}
+                  to={
+                    element === "Simulador"
+                      ? "/dashboard"
+                      : element
+                          .normalize("NFD")
+                          .replace(/[\u0300-\u036f]/g, "")
+                          .toLowerCase()
+                  }
+                >
+                  <button className="redirectBtn">{element}</button>
+                </Link>
+              );
+            })}
           </div>
 
           <div id="login-logout-container">
@@ -54,7 +64,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <HeaderMenu showMenu={showMenu} />
+      <HeaderMenu showMenu={showMenu} handleMenu={handleMenu} />
     </StyledHeader>
   );
 };

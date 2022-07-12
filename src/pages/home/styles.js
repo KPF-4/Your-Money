@@ -52,7 +52,7 @@ export const StyledHome = styled.section`
         width: 50%;
       }
     }
-    .cotacao {
+    #cotacao {
       width: 50%;
     }
 
