@@ -11,6 +11,12 @@ export const FlexForm = styled.form`
     gap: 30px;
 
     .data-content {
+      width: 265px;
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    .data-content {
       width: 300px;
     }
   }

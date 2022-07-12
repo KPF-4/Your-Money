@@ -16,7 +16,7 @@ export const FlexComponent = styled.div`
     justify-content: center;
   }
 
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1100px) {
     width: 50%;
     justify-content: center;
   }

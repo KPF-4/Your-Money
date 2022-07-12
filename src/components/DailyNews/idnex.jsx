@@ -21,7 +21,12 @@ const DailyNews = () => {
             <div>
               <h3>{articles[6].title}</h3>
               <span>{articles[6].description}</span>
-              <span>{articles[6].content.split("…")[0]+"…"}<span>Ler Mais</span></span>
+              {articles[6].content && (
+                <span>{articles[6].content.split("…")[0] + "…"}</span>
+              )}
+              <span>
+                <span>Ler Mais</span>
+              </span>
             </div>
           </a>
         </DailyNewsFeatured>

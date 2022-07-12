@@ -15,6 +15,7 @@ export const StyledDailyNewsCard = styled.li`
 
     h3 {
       font-family: "Roboto";
+      height: 70px;
     }
 
     p {
