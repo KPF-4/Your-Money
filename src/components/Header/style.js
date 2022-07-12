@@ -91,4 +91,10 @@ export const StyledHeader = styled.header`
       }
     }
   }
+
+  @media (min-width: 1000px) {
+    .redirectBtn {
+      font-size: 16px;
+    }
+  }
 `;
