@@ -22,7 +22,6 @@ export const DailyNewsFeatured = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
     width: 100%;
     gap: 30px;
     margin: 5% 0;

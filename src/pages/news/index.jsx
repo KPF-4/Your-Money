@@ -6,13 +6,13 @@ import { NewsAreaMain, NewsContent } from "./styles";
 const News = () => {
   return (
     <>
-      <Header />
       <NewsAreaMain>
+        <Header />
         <NewsContent>
           <NewsArea />
         </NewsContent>
+        <Footer />
       </NewsAreaMain>
-      <Footer />
     </>
   );
 };

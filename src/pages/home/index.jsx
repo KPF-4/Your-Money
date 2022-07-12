@@ -17,26 +17,24 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <StyledHome>
       <Header />
-      <StyledHome>
-        <div className="container-home">
-          <div className="cotacao-simualdor">
-            <div id="cotacoes">
-              <figure id="img-figure">
-                <Lottie height={"auto"} options={defaultOptions} />
-              </figure>
-              <Quotation />
-            </div>
-            <div className="simulador">
-              <p>Simulador</p>
-            </div>
+      <div className="container-home">
+        <div className="cotacao-simualdor">
+          <div id="cotacoes">
+            <figure id="img-figure">
+              <Lottie height={"auto"} options={defaultOptions} />
+            </figure>
+            <Quotation />
           </div>
-          <NewsArea />
+          <div className="simulador">
+            <p>Simulador</p>
+          </div>
         </div>
-      </StyledHome>
+        <NewsArea />
+      </div>
       <Footer />
-    </div>
+    </StyledHome>
   );
 };
 
