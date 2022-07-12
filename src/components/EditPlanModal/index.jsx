@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import Input from "../Input";
@@ -14,21 +14,23 @@ import { CloseModalBtn } from "../CloseModalBtn/style";
 import { FlexComponent, FlexForm, Line } from "../LoginArea/styles";
 import { ModalHeader } from "./style";
 import ApiFake from "../../Service/api_fake";
+import { GraficsContext } from "../../providers/grafics";
 
-const EditPlanModal = ( { postId, data, handleModal, modal } ) => {
+const EditPlanModal = ( { postId, handleModal, modal } ) => {
     const [entryType, setEntryType] = useState("Entrada");
     const [categoryType, setCategoryType] = useState("Moradia");
     const userID = localStorage.getItem("@YOURMONEY-USER")
     const token = localStorage.getItem("@YOURMONEY-TOKEN")
+    const {data} = useContext(GraficsContext)   
 
-    console.log(data)
-
-    const valueTypeOptions = ["Entrada", "Saída"];
+    const dataEdit = data?.filter((el)=> parseInt(el.id)=== parseInt(postId))
+    
+    const valueTypeOptions = ["Gasto", "Ganho"];
     const categoryTypeOptions = [
       "Moradia",
       "Mercado",
       "Viagem",
-      "Investimento",
+      "Investimentos",
       "Salário",
       "Outros",
     ];
@@ -66,7 +68,7 @@ const EditPlanModal = ( { postId, data, handleModal, modal } ) => {
         headers: { "Authorization": `Bearer ${JSON.parse(token)}`}
       };
 
-      console.log(`/financeiroa/${postId}`)
+      console.log(postId)
   
       ApiFake
         .patch(`/financeiro/${postId}`, data, config)
@@ -99,48 +101,62 @@ const EditPlanModal = ( { postId, data, handleModal, modal } ) => {
 
             <Input
               label="Nome da entrada:"
-              placeholder="Digite o nome da entrada"
+              placeholder={dataEdit[0]?.nome}
               name="entryName"
               error={errors.entryName}
               register={register}
+              //value={dataEdit[0]?.nome}
            />
   
             <Input
               label="Descrição:"
-              placeholder="Digite a descrição da entrada"
+              //placeholder={dataEdit[0]?.descricao}
               name="description"
               error={errors.description}
               register={register}
+              //value={parseFloat(dataEdit[0]?.descricao)}
             />
   
             <SelectInput
               label="Tipo de valor"
               name="valueType"
               setValue={setEntryType}
+              error={errors.description}
+              register={register}
               inputOptions={valueTypeOptions}
+              //value={dataEdit[0]?.tipo}
+
             />
   
             <SelectInput
               label="Categoria"
               name="category"
               setValue={setCategoryType}
+              error={errors.description}
+              register={register}
+              value={dataEdit[0]?.categoria}
               inputOptions={categoryTypeOptions}
             />
   
             <Input
               label="Valor:"
-              placeholder="R$"
+              placeholder={parseFloat(dataEdit[0]?.valor)}
               name="amountValue"
               error={errors.value}
               register={register}
+              value={parseFloat(dataEdit[0]?.valor)}
+
             />
   
             <Input
               label="Data:"
               name="date"
+              //placeholder={dataEdit.data}
               type="date"
               error={errors.date}
               register={register}
+              //value={dataEdit[0].data}
+
             />
   
             <Button background="#38C172" width="100%" type="submit">
@@ -148,6 +164,9 @@ const EditPlanModal = ( { postId, data, handleModal, modal } ) => {
             </Button>
           </FlexComponent>
         </FlexForm>
+            <Button background="#e66060" width="100%">
+              Deletar
+            </Button>
       </Modal>
     );
   };

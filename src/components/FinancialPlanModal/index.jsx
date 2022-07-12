@@ -3,8 +3,9 @@ import Modal from "react-modal";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Input from "../Input";
 import SelectInput from "../SelectInput";
@@ -13,15 +14,16 @@ import { CloseModalBtn } from "../CloseModalBtn/style";
 import { FlexComponent, FlexForm, Line } from "../LoginArea/styles";
 import { ModalHeader } from "./style";
 import ApiFake from "../../Service/api_fake";
+import { useContext } from "react";
+import { GraficsContext } from "../../providers/grafics";
 
-const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanModal} ) => {
-  const userId = localStorage.getItem("@YOURMONEY-USER")
+export const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanModal} ) => {
+  const userId = localStorage.getItem("@YOURMONEY-ID")
   const token = localStorage.getItem("@YOURMONEY-TOKEN")
-  const [entryType, setEntryType] = useState("Entrada");
-  const [categoryType, setCategoryType] = useState("Moradia");
 
+  const {setPlayDashboard} = useContext(GraficsContext)
 
-  const valueTypeOptions = ["Entrada", "Saída"];
+  const valueTypeOptions = ["Ganho", "Gasto"];
   const categoryTypeOptions = [
     "Moradia",
     "Mercado",
@@ -32,13 +34,12 @@ const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanModal} ) 
   ];
 
   const formSchema = yup.object().shape({
-    nome: yup.string().required("Digite o nome da entrada"),
-
-    descricao: yup.string().required("Digite a descrição da entrada"),
-
-    valor: yup.string().required("Digite um valor"),
-
-    data: yup.string().required("Preencha com uma data"),
+    entryName: yup.string().required("Digite o nome da entrada"),
+    valueType: yup.string().required("Selecione o tipo"),
+    description: yup.string().required("Digite a descrição da entrada"),
+    categoryType: yup.string().required("Digite a descrição da entrada"),
+    value: yup.number().typeError("Digite um valor").required("Digite um valor"),
+    date: yup.string().required("Preencha com uma data"),
   });
 
   const {
@@ -48,26 +49,38 @@ const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanModal} ) 
   } = useForm({ resolver: yupResolver(formSchema) });
   
   const onSubmitFunction = (data) => {
-    const {nome, valor, date}= data
+    const {entryName, valueType, categoryType, value, date}= data
 
     const newData = {
-      nome: nome,
-      tipo: entryType,
+      nome: entryName,
+      tipo: valueType,
       categoria: categoryType,
-      valor: valor,
+      valor: value,
       data: date,
-      userId: JSON.parse(userId),
+      userId: userId,
     };    
     
     const config = {
-      headers: { Authorization: `Bearer ${JSON.parse(token)}` },
-    };    
-    
-    console.log(newData, config)    
+      headers: { Authorization: `Bearer ${token}` },
+    };       
+    const resolve = new Promise((resolve, reject) => {
+      ApiFake.post("/financeiro", newData, config)
+      .then((res) => {
+        setTimeout(resolve)
+        setPlayDashboard(true)
+        console.log(res)
+      })
+      .catch((err) => {
+        setTimeout(reject)
+        console.log(err)
+      });
+    })
       
-    ApiFake.post("/financeiro", newData, config)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    toast.promise(resolve, {
+      pending: "Aguarde",
+      success: "Sucesso ao acessar sua conta",
+      error: "Email ou senha inválidos",
+    })
   };
 
   return (
@@ -92,7 +105,7 @@ const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanModal} ) 
           <Input
             label="Nome da entrada:"
             placeholder="Digite o nome da entrada"
-            name="nome"
+            name="entryName"
             error={errors.entryName}
             register={register}
           />
@@ -100,31 +113,31 @@ const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanModal} ) 
           <Input
             label="Descrição:"
             placeholder="Digite a descrição da entrada"
-            name="descricao"
+            name="description"
             error={errors.description}
             register={register}
           />
 
           <SelectInput
             label="Tipo de valor"
-            name="tipo"
+            name="valueType"
             error={errors.valueType}
-            setValue={setEntryType}
             inputOptions={valueTypeOptions}
+            register={register}
           />
 
           <SelectInput
             label="Categoria"
-            name="categoria"
-            error={errors.category}
-            setValue={setCategoryType}
+            name="categoryType"
+            error={errors.categoryType}
             inputOptions={categoryTypeOptions}
+            register={register}
           />
 
           <Input
             label="Valor:"
             placeholder="R$"
-            name="valor"
+            name="value"
             error={errors.value}
             register={register}
           />
@@ -145,5 +158,3 @@ const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanModal} ) 
     </Modal>
   );
 };
-
-export default FinancialPlanModal

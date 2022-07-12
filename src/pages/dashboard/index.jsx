@@ -6,69 +6,62 @@ import { FinancialPlanModal } from "../../components/FinancialPlanModal"
 
 import { useHistory } from "react-router-dom"
 
-import { GraficsContext } from "../../providers/grafics"
-
 import { useState } from "react";
-import { useContext } from "react"
 import { DashBoardTotal } from "../../components/DashBoardTotal"
 
 const Dashboard = () => {
+    const [postId, setPostId] = useState(undefined)
 
-  const {setData, data} = useContext(GraficsContext);
-  const [postId, setPostId] = useState(undefined)
-  
-  const token = localStorage.getItem("@YOURMONEY-TOKEN")
-  const history = useHistory()
-  
-  const [financialPlanModal, setFinancialPlanModal] = useState(false);
-  const [editFinancialPlanModal, setEditFinancialPlanModal] = useState(false)
-  
-  const handleFinancialPlanModal = (event) => {
-    if (financialPlanModal === false) {
-      setFinancialPlanModal(true);
-    } else {
-      setFinancialPlanModal(false);
+    const token = localStorage.getItem("@YOURMONEY-TOKEN")
+    const history = useHistory()
+
+    const [financialPlanModal, setFinancialPlanModal] = useState(false);
+    const [editFinancialPlanModal, setEditFinancialPlanModal] = useState(false)
+
+    const handleFinancialPlanModal = () => {
+      if (financialPlanModal === false) {
+        setFinancialPlanModal(true);
+      } else {
+        setFinancialPlanModal(false);
+      }
     }
-  }
-  
-  const handleEditFinancialPlanModal = (event) => {
-    if (editFinancialPlanModal === false) {
-      setEditFinancialPlanModal(true)
-      setPostId(event.target.id)
-    } else {
-      setEditFinancialPlanModal(false)
+    
+    const handleEditFinancialPlanModal = (event) => {
+      if (editFinancialPlanModal === false) {
+        setPostId(event.target.id)
+        setEditFinancialPlanModal(true)
+      } else {
+        setEditFinancialPlanModal(false)
+      }
     }
-  }
-  
-  if(token){
-      return(
-          <>
-              <Header />
-              <Grafics/>
-              <FinancialPlanModal 
-                financialPlanModal={financialPlanModal}
-                handleFinancialPlanModal={handleFinancialPlanModal}
-              />
 
-              <EditPlanModal
-                postId={postId}
-                data={data} 
-                handleModal={handleEditFinancialPlanModal}
-                modal={editFinancialPlanModal}
-              />
+    if(token){
+        return(
+            <>
+                <Header />
+                <FinancialPlanModal 
+                  financialPlanModal={financialPlanModal}
+                  handleFinancialPlanModal={handleFinancialPlanModal}
+                />
 
-              <FinancialTable 
-                data={data}
-                handleFinancialPlanModal={handleFinancialPlanModal} 
-                handleEditFinancialPlanModal={handleEditFinancialPlanModal}
-              />
+                <EditPlanModal
+                  postId={postId}
+                  handleModal={handleEditFinancialPlanModal}
+                  modal={editFinancialPlanModal}
+                />
 
-              <DashBoardTotal data={data}/>
-          </>
-      )
-  } else {
-      history.push("/login")
-  }
+                <FinancialTable 
+                  handleFinancialPlanModal={handleFinancialPlanModal} 
+                  handleEditFinancialPlanModal={handleEditFinancialPlanModal}
+                />
+
+                <DashBoardTotal/>
+                <Grafics/>
+            </>
+        )
+    } else {
+        history.push("/login")
+    }
     
 }
 

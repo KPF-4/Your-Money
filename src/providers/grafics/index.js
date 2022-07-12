@@ -18,14 +18,15 @@ export const GraficsProvider = ( {children} ) => {
     })
       .then((response) => {
         setData(response.data);
+        setPlayDashboard(false);
       })
       .catch((error) => {
         console.log(error);
+        setPlayDashboard(false);
       });
   };
 
   useEffect(() => {
-    
     playDashboad && requisition();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playDashboad]);

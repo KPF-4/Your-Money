@@ -7,9 +7,13 @@ import { FinancialTableContainer,
 import { Line } from "../LoginArea/styles";
 
 import { BiAddToQueue } from "react-icons/bi"
+import { useContext } from "react";
+import { GraficsContext } from "../../providers/grafics";
 
-export const FinancialTable = ( { data, handleEditFinancialPlanModal, handleFinancialPlanModal } ) => {
-    
+export const FinancialTable = ( {handleEditFinancialPlanModal, handleFinancialPlanModal } ) => {
+    const {data} = useContext(GraficsContext)
+
+
     return (
         <FinancialTableContainer>
             <FinancialTableHeader>
@@ -47,16 +51,17 @@ export const FinancialTable = ( { data, handleEditFinancialPlanModal, handleFina
                         <StyledSpan justify="flex-end">
                             Valor
                         </StyledSpan>
+                        
                     </div>
 
                     <Line />
                 </header>
 
-                {data.map(element =>
+                {data.map((element,index) =>
                     <div 
+                        key={index}
                         id={element.id}
                         onClick={(event) => handleEditFinancialPlanModal(event)} >
-                         {console.log(element)}
                         <div className="item">
                             <StyledSpan 
                                 id={element.id} 
@@ -64,7 +69,7 @@ export const FinancialTable = ( { data, handleEditFinancialPlanModal, handleFina
                                 {element.nome}
                             </StyledSpan>
                             
-                            {element.entryType === "Entrada" ? (
+                            {element.tipo === "Ganho" ? (
                                 <StyledSpan 
                                     id={element.id} 
                                     color="green">
@@ -74,7 +79,7 @@ export const FinancialTable = ( { data, handleEditFinancialPlanModal, handleFina
                                 <StyledSpan 
                                     id={element.id} 
                                     color="red">
-                                    {element.id}
+                                    {element.tipo}
                                 </StyledSpan>
                             )}
 
@@ -83,21 +88,28 @@ export const FinancialTable = ( { data, handleEditFinancialPlanModal, handleFina
                                 {element.categoria}
                             </StyledSpan>
 
-                            {element.entryType === "Entrada" ? (
+                            {element.tipo === "Ganho" ? (
                                 <StyledSpan 
                                     id={element.id}
                                     justify={"flex-end"} 
                                     color="green">
-                                    {element.valor}
+                                    {parseFloat(element.valor).toLocaleString("pt-br", {
+                                        style: "currency",
+                                        currency: "BRL",
+                                        })}
                                 </StyledSpan>
                             ) : (
                                 <StyledSpan 
                                     id={element.id}
                                     justify={"flex-end"} 
                                     color="red">
-                                        {element.valor}
+                                        {parseFloat(element.valor).toLocaleString("pt-br", {
+                                            style: "currency",
+                                            currency: "BRL",
+                                            })}
                                 </StyledSpan>
                             )}
+            
                         </div>
                         <Line />
                     </div>

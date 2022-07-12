@@ -17,9 +17,6 @@ export const DashBoardTotalContainer = styled.div`
 
     font-family: 'Roboto';
 
-    @media screen and (min-width: 1000px) {
-        width: 300px;
-    }
 `
 
 export const DashBoardTotalHeader = styled.header`

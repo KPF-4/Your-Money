@@ -1,3 +1,5 @@
+import { useContext } from "react"
+import { GraficsContext } from "../../providers/grafics"
 import { Line } from "../LoginArea/styles"
 import { DashBoardTotalContainer,
          DashBoardTotalHeader,
@@ -5,52 +7,15 @@ import { DashBoardTotalContainer,
 
 import { StyledSpan } from "./style"
 
-export const DashBoardTotal = ( { data } ) => {
-    const positiveNums = data.map(element => {
-        if (element.entryType === "Entrada") {
-            const positiveFilter = parseFloat(element.amountValue
-                                  .replace(/\./g, '')
-                                  .replace(',', '.'))
-            return positiveFilter
-        }
-    })
+export const DashBoardTotal = () => {
 
-    const negativeNums = data.map(element => {
-            if (element.entryType === "Saída") {
-            const negativeFilter = parseFloat(element.amountValue
-                                  .replace(/\./g, '')
-                                  .replace(',', '.'))
+    const {data} = useContext(GraficsContext)
 
-            const results = -Math.abs(negativeFilter)
-            return results
-        }
-    })
-
-    function sumBalance() {
-        const separator = positiveNums.filter(element => element !== undefined ? element : null)
-        const accumulator = separator.reduce(
-            (previousValue, currentValue) => previousValue + currentValue, 0);
-
-        return accumulator
-    }
-
-    function subBalance() {
-        const separator = negativeNums.filter(element => element !== undefined ? element : null)
-        const accumulator = separator.reduce(
-            (previousValue, currentValue) => previousValue + currentValue, 0);
-
-        return accumulator
-    }
-
-    function totalBalance() {
-        const mixArrays = positiveNums.concat(negativeNums)
-        const separator = mixArrays.filter(element => element !== undefined ? element : null)
-        const accumulator = separator.reduce(
-            (previousValue, currentValue) => previousValue + currentValue, 0);
-
-        return accumulator.toFixed(2)
-    }
-
+    const positivo = data.filter(el=> el.tipo=== "Ganho").map(el=> el.valor).reduce((p, c)=> parseFloat(p)+parseFloat(c),0);
+    const negativo = data.filter(el=> el.tipo=== "Gasto").map(el=> el.valor).reduce((p, c)=> parseFloat(p)+parseFloat(c),0);
+    const total = parseFloat(positivo-negativo)
+    const color = total >0? "green":"red";
+    
     return(
         <DashBoardTotalContainer>
             <DashBoardTotalHeader>
@@ -60,20 +25,29 @@ export const DashBoardTotal = ( { data } ) => {
 
             <DashBoardBody>
                 <p>
-                    Total de gastos: R$ <StyledSpan color="red"> 
-                                             {subBalance()}
+                    Total de gastos: <StyledSpan color="red"> 
+                                             {negativo.toLocaleString("pt-br", {
+                                                style: "currency",
+                                                currency: "BRL",
+                                                })}
                                         </StyledSpan>
                 </p>
 
                 <p>
-                    Total de ganhos: R$ <StyledSpan color="green"> 
-                                            {sumBalance()}
+                    Total de ganhos: <StyledSpan color="green"> 
+                                            {positivo.toLocaleString("pt-br", {
+                                                style: "currency",
+                                                currency: "BRL",
+                                                })}
                                         </StyledSpan>
                 </p>
 
                 <p>
-                    Saldo: R$ <StyledSpan>
-                                {totalBalance()}
+                    Saldo: <StyledSpan color={color}>
+                                {total.toLocaleString("pt-br", {
+                                    style: "currency",
+                                    currency: "BRL",
+                                    })}
                               </StyledSpan>
                 </p>
             </DashBoardBody>
