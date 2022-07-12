@@ -12,10 +12,14 @@ import Button from "../Button";
 import { CloseModalBtn } from "../CloseModalBtn/style";
 import { FlexComponent, FlexForm, Line } from "../LoginArea/styles";
 import { ModalHeader } from "./style";
+import ApiFake from "../../Service/api_fake";
 
 export const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanModal} ) => {
+  const userId = localStorage.getItem("@YOURMONEY-USER")
+  const token = localStorage.getItem("@YOURMONEY-TOKEN")
   const [entryType, setEntryType] = useState("Entrada");
   const [categoryType, setCategoryType] = useState("Moradia");
+
 
   const valueTypeOptions = ["Entrada", "Saída"];
   const categoryTypeOptions = [
@@ -28,13 +32,13 @@ export const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanMo
   ];
 
   const formSchema = yup.object().shape({
-    entryName: yup.string().required("Digite o nome da entrada"),
+    nome: yup.string().required("Digite o nome da entrada"),
 
-    description: yup.string().required("Digite a descrição da entrada"),
+    descricao: yup.string().required("Digite a descrição da entrada"),
 
-    amountValue: yup.string().required("Digite um valor"),
+    valor: yup.string().required("Digite um valor"),
 
-    date: yup.string().required("Preencha com uma data"),
+    data: yup.string().required("Preencha com uma data"),
   });
 
   const {
@@ -43,11 +47,29 @@ export const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanMo
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
-  const onSubmitFunction = (data) => {
-    data.entryType = entryType;
-    data.categoryType = categoryType;
 
-    console.log(data)
+  
+  const onSubmitFunction = (data) => {
+    const {nome, valor, date}= data
+
+    const newData = {
+      nome: nome,
+      tipo: entryType,
+      categoria: categoryType,
+      valor: valor,
+      data: date,
+      userId: JSON.parse(userId),
+    };    
+    
+    const config = {
+      headers: { Authorization: `Bearer ${JSON.parse(token)}` },
+    };    
+    
+    console.log(newData, config)    
+      
+    ApiFake.post("/financeiro", newData, config)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -72,7 +94,7 @@ export const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanMo
           <Input
             label="Nome da entrada:"
             placeholder="Digite o nome da entrada"
-            name="entryName"
+            name="nome"
             error={errors.entryName}
             register={register}
           />
@@ -80,14 +102,14 @@ export const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanMo
           <Input
             label="Descrição:"
             placeholder="Digite a descrição da entrada"
-            name="description"
+            name="descricao"
             error={errors.description}
             register={register}
           />
 
           <SelectInput
             label="Tipo de valor"
-            name="valueType"
+            name="tipo"
             error={errors.valueType}
             setValue={setEntryType}
             inputOptions={valueTypeOptions}
@@ -95,7 +117,7 @@ export const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanMo
 
           <SelectInput
             label="Categoria"
-            name="category"
+            name="categoria"
             error={errors.category}
             setValue={setCategoryType}
             inputOptions={categoryTypeOptions}
@@ -104,7 +126,7 @@ export const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanMo
           <Input
             label="Valor:"
             placeholder="R$"
-            name="amountValue"
+            name="valor"
             error={errors.value}
             register={register}
           />

@@ -9,7 +9,7 @@ import { Line } from "../LoginArea/styles";
 import { BiAddToQueue } from "react-icons/bi"
 
 export const FinancialTable = ( { data, handleEditFinancialPlanModal, handleFinancialPlanModal } ) => {
-     
+    
     return (
         <FinancialTableContainer>
             <FinancialTableHeader>
@@ -61,26 +61,26 @@ export const FinancialTable = ( { data, handleEditFinancialPlanModal, handleFina
                             <StyledSpan 
                                 id={element.id} 
                                 justify="flex-start">
-                                {element.entryName}
+                                {element.nome}
                             </StyledSpan>
                             
                             {element.entryType === "Entrada" ? (
                                 <StyledSpan 
                                     id={element.id} 
                                     color="green">
-                                    {element.entryType}
+                                    {element.tipo}
                                 </StyledSpan>
                             ) : (
                                 <StyledSpan 
                                     id={element.id} 
                                     color="red">
-                                    {element.entryType}
+                                    {element.id}
                                 </StyledSpan>
                             )}
 
                             <StyledSpan 
                                 id={element.id} >
-                                {element.categoryType}
+                                {element.categoria}
                             </StyledSpan>
 
                             {element.entryType === "Entrada" ? (
@@ -88,14 +88,14 @@ export const FinancialTable = ( { data, handleEditFinancialPlanModal, handleFina
                                     id={element.id}
                                     justify={"flex-end"} 
                                     color="green">
-                                    {element.amountValue}
+                                    {element.valor}
                                 </StyledSpan>
                             ) : (
                                 <StyledSpan 
                                     id={element.id}
                                     justify={"flex-end"} 
                                     color="red">
-                                        {element.amountValue}
+                                        {element.valor}
                                 </StyledSpan>
                             )}
                         </div>
