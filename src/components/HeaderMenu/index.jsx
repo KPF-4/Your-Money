@@ -36,7 +36,7 @@ const HeaderMenu = ({ showMenu }) => {
             </Link>
           </div>
           <div>
-            <Link to="/simulador">
+            <Link to="/dashboard">
               <GoGraph />
               <p>Simulador</p>
               <span></span>
