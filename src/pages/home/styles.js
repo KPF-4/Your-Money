@@ -24,19 +24,6 @@ export const StyledHome = styled.section`
     flex-direction: row;
   }
 
-  .noticiasDiarias {
-    display: none;
-    flex-direction: column;
-  }
-
-  .noticiasDestaque {
-    section {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-  }
-
   @media screen and (min-width: 1000px) {
     .cotacao-simualdor {
       flex-direction: column-reverse;
@@ -54,24 +41,6 @@ export const StyledHome = styled.section`
     }
     #cotacao {
       width: 50%;
-    }
-
-    .noticiasDestaque {
-      margin-top: 50px;
-      max-width: 270px;
-    }
-
-    .noticiasDiarias {
-      width: 80%;
-      display: flex;
-      justify-content: center;
-    }
-
-    .news {
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-      width: 100%;
     }
   }
 `;

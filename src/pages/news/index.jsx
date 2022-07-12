@@ -1,20 +1,16 @@
-import DailyNews from "../../components/DailyNews/idnex";
-import FeaturedNews from "../../components/FeaturedNews";
 import Header from "../../components/Header";
-import { DailyNewsArea, NewsArea, NewsContent } from "./styles";
+import NewsArea from "../../components/NewsArea";
+import { NewsAreaMain, NewsContent } from "./styles";
 
 const News = () => {
   return (
     <>
       <Header />
-      <NewsArea>
+      <NewsAreaMain>
         <NewsContent>
-          <FeaturedNews />
-          <DailyNewsArea>
-            <DailyNews />
-          </DailyNewsArea>
+          <NewsArea />
         </NewsContent>
-      </NewsArea>
+      </NewsAreaMain>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const NewsArea = styled.main`
+export const NewsAreaMain = styled.main`
   display: flex;
   justify-content: center;
 `;

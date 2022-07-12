@@ -1,11 +1,10 @@
-import DailyNews from "../../components/DailyNews/idnex";
-import FeaturedNews from "../../components/FeaturedNews";
 import Header from "../../components/Header";
 import Quotation from "../../components/Quotation";
 import { StyledHome } from "./styles";
 import * as animationData from "../../assets/json-animate/Cotações-animation.json";
 import Lottie from "react-lottie";
 import Footer from "../../components/Footer";
+import NewsArea from "../../components/NewsArea";
 
 const Home = () => {
   const defaultOptions = {
@@ -33,14 +32,7 @@ const Home = () => {
               <p>Simulador</p>
             </div>
           </div>
-          <div className="news">
-            <div className="noticiasDiarias">
-              <DailyNews />
-            </div>
-            <div className="noticiasDestaque">
-              <FeaturedNews />
-            </div>
-          </div>
+          <NewsArea />
         </div>
       </StyledHome>
       <Footer />
