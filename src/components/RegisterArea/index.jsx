@@ -71,20 +71,27 @@ export const RegisterArea = () => {
   const onSubmitFunction = (data) => {
     const { confirmEmail, confirmPassword, ...newData } = data;
 
-    ApiFake.post("/register", newData)
-      .then((res) => {
-        const { accessToken, user } = res.data;
-        localStorage.setItem("@YOURMONEY-TOKEN", accessToken);
-        localStorage.setItem("@YOURMONEY-ID", JSON.stringify(user.id));
-        toast.success("Sucesso ao criar conta");
-        setTimeout(() => {
-          return history.push("/");
-        }, 2000);
+    const resolve = new Promise((resolve, reject) => {
+      
+      ApiFake.post("/register", newData)
+        .then((res) => {
+          const { accessToken, user } = res.data;
+          localStorage.setItem("@YOURMONEY-TOKEN", accessToken);
+          localStorage.setItem("@YOURMONEY-ID", JSON.stringify(user.id));
+          setTimeout(resolve)
+          setTimeout(() => {
+            return history.push("/");
+          }, 2000);
+        })
+        .catch((err) => {
+          setTimeout(reject)
+        });
+
       })
-      .catch((err) => {
-        err.response.data = "Email already exists"
-          ? toast.error("Usuário já cadastrado, tente outro email")
-          : toast.error("Erro ao criar conta, tente outro email");
+      toast.promise(resolve, {
+        pending: "Aguarde",
+        success: "Sucesso ao criar conta",
+        error: "Email já cadastrado",
       });
   };
 

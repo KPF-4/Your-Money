@@ -24,20 +24,28 @@ const LoginArea = () => {
 
   const history = useHistory();
 
-  const onSubmitFunction = async (data) => {
-    await ApiFake.post("/login", data)
-      .then((res) => {
-        const { accessToken, user } = res.data;
-        localStorage.setItem("@YOURMONEY-TOKEN", accessToken);
-        localStorage.setItem("@YOURMONEY-ID", JSON.stringify(user.id));
-        toast.success("Sucesso ao acessar sua conta");
-        setTimeout(() => {
-          return history.push("/dashboard");
-        }, 2000);
-      })
-      .catch((err) => {
-        toast.error("Email ou senha inválidos");
-      });
+  const onSubmitFunction = (data) => {
+    const resolve = new Promise((resolve, reject) => {
+      ApiFake.post("/login", data)
+        .then((res) => {
+          const { accessToken, user } = res.data;
+          localStorage.setItem("@YOURMONEY-TOKEN", accessToken);
+          localStorage.setItem("@YOURMONEY-ID", JSON.stringify(user.id));
+          setTimeout(resolve)
+          setTimeout(() => {
+              return history.push("/dashboard");
+          }, 2000);
+        })
+        .catch((err) => {
+          setTimeout(reject)
+        });
+    });
+
+    toast.promise(resolve, {
+      pending: "Aguarde",
+      success: "Sucesso ao acessar sua conta",
+      error: "Email ou senha inválidos",
+    });
   };
 
   return (
