@@ -3,20 +3,17 @@ import { DashBoardTotalContainer,
          DashBoardTotalHeader,
          DashBoardBody } from "./style"
 
-export const DashBoardTotal = ( { data } ) => {
+import { StyledSpan } from "./style"
 
+export const DashBoardTotal = ( { data } ) => {
     const positiveNums = data.map(element => {
         if (element.entryType === "Entrada") {
             const positiveFilter = parseFloat(element.amountValue
                                   .replace(/\./g, '')
                                   .replace(',', '.'))
-
-
             return positiveFilter
         }
     })
-
-    console.log(positiveNums)
 
     const negativeNums = data.map(element => {
             if (element.entryType === "Saída") {
@@ -24,33 +21,35 @@ export const DashBoardTotal = ( { data } ) => {
                                   .replace(/\./g, '')
                                   .replace(',', '.'))
 
-            const results = -Math.abs(negativeFilter) !== undefined ? 
-            (console.log("esses são diferentes")
-            ) : 
-            (console.log("esses são diferentes")
-            )
-            
-
+            const results = -Math.abs(negativeFilter)
             return results
         }
     })
 
-    console.log(negativeNums)
-
     function sumBalance() {
-        const accumulator = positiveNums.reduce(
+        const separator = positiveNums.filter(element => element !== undefined ? element : null)
+        const accumulator = separator.reduce(
             (previousValue, currentValue) => previousValue + currentValue, 0);
-            return accumulator
+
+        return accumulator
     }
 
     function subBalance() {
-        const accumulator = negativeNums.reduce(
+        const separator = negativeNums.filter(element => element !== undefined ? element : null)
+        const accumulator = separator.reduce(
             (previousValue, currentValue) => previousValue + currentValue, 0);
-            return accumulator
+
+        return accumulator
     }
- 
-   /* console.log(sumBalance())
-    console.log(subBalance())*/
+
+    function totalBalance() {
+        const mixArrays = positiveNums.concat(negativeNums)
+        const separator = mixArrays.filter(element => element !== undefined ? element : null)
+        const accumulator = separator.reduce(
+            (previousValue, currentValue) => previousValue + currentValue, 0);
+
+        return accumulator.toFixed(2)
+    }
 
     return(
         <DashBoardTotalContainer>
@@ -61,15 +60,21 @@ export const DashBoardTotal = ( { data } ) => {
 
             <DashBoardBody>
                 <p>
-                    Total de gastos: R$ <span> </span>
+                    Total de gastos: R$ <StyledSpan color="red"> 
+                                             {subBalance()}
+                                        </StyledSpan>
                 </p>
 
                 <p>
-                    Total de ganhos: R$ <span> </span>
+                    Total de ganhos: R$ <StyledSpan color="green"> 
+                                            {sumBalance()}
+                                        </StyledSpan>
                 </p>
 
                 <p>
-                    Valor total: R$ <span> </span>
+                    Saldo: R$ <StyledSpan>
+                                {totalBalance()}
+                              </StyledSpan>
                 </p>
             </DashBoardBody>
 

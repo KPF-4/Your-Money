@@ -1,5 +1,3 @@
-import { useContext, useState } from "react"
-
 import { FinancialTableContainer, 
          FinancialTableHeader, 
          FinancialTableAdd, 
@@ -8,13 +6,7 @@ import { FinancialTableContainer,
 
 import { Line } from "../LoginArea/styles";
 
-import { GraficsContext } from "../../providers/grafics"
 import { BiAddToQueue } from "react-icons/bi"
-
-import { useForm } from "react-hook-form";
-
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 export const FinancialTable = ( { data, handleEditFinancialPlanModal, handleFinancialPlanModal } ) => {
      

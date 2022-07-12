@@ -65,7 +65,10 @@ export const DashBoardBody = styled.div`
         margin: 1px;
     }
 `
-
+export const StyledSpan = styled.span`
+    justify-content: ${(props) => props.justify || "center"};
+    color: ${(props) => props.color || "black"}
+`
 
 
 
