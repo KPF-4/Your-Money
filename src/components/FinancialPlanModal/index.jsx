@@ -137,7 +137,7 @@ const FinancialPlanModal = () => {
             register={register}
           />
 
-          <Button background="#38C172" width="100%" type="submit">
+          <Button background="var(--green-button)" width="100%" type="submit">
             Cadastrar
           </Button>
         </FlexComponent>

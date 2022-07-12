@@ -176,7 +176,7 @@ export const RegisterArea = () => {
           />
 
           <FlexComponent justify="center" align="flex-end">
-            <Button background="#38C172" width="60%">
+            <Button background="var(--green-button)" width="60%">
               Cadastre-se
             </Button>
           </FlexComponent>
@@ -187,7 +187,7 @@ export const RegisterArea = () => {
           </FlexComponent>
           <Link to="/login">
             <FlexComponent justify="center">
-              <Button background="#3490DC" width="60%">
+              <Button background="var(--blue-button)" width="60%">
                 Logue-se
               </Button>
             </FlexComponent>
