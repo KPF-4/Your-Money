@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const DashBoardTotalContainer = styled.div`
-    margin: 20px auto;
+    /* margin: 20px auto;
     width: 100vw;
     max-width: 90%;
-    min-width: 380px;
+    min-width: 380px; */
+    margin: 20px 0;
+    width: 80%;
     height: fit-content;
 
     display: flex;

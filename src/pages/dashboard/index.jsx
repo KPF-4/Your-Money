@@ -1,12 +1,12 @@
-import Header from "../../components/Header"
-import { Grafics } from "../../components/Grafics"
-import EditPlanModal from "../../components/EditPlanModal"
-import { FinancialTable } from "../../components/FinancialTable"
-import { FinancialPlanModal } from "../../components/FinancialPlanModal"
+import Header from "../../components/Header";
+import { Grafics } from "../../components/Grafics";
+import EditPlanModal from "../../components/EditPlanModal";
+import { FinancialTable } from "../../components/FinancialTable";
+import { FinancialPlanModal } from "../../components/FinancialPlanModal";
 
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import { DashBoardTotal } from "../../components/DashBoardTotal"
 import { ModalContext } from "../../providers/modals"
 
@@ -31,6 +31,6 @@ const Dashboard = () => {
       history.push("/login")
   }
     
-}
+};
 
-export default Dashboard
+export default Dashboard;

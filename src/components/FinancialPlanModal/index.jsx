@@ -66,7 +66,7 @@ export const FinancialPlanModal = () => {
     
     const config = {
       headers: { Authorization: `Bearer ${token}` },
-    };       
+    };
     const resolve = new Promise((resolve, reject) => {
       ApiFake.post("/financeiro", newData, config)
       .then((res) => {

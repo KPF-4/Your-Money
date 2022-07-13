@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const FinancialTableContainer = styled.div`
-    margin: 20px auto;
+    /* margin: 20px auto;
     width: 100vw;
     max-width: 90%;
-    min-width: 380px;
+    min-width: 380px; */
+    margin: 20px 0;
+    width: 80%;
     height: fit-content;
 
     display: flex;
@@ -16,6 +18,15 @@ export const FinancialTableContainer = styled.div`
     box-shadow: 0px .3rem .3rem 1px rgba(0, 0, 0, 0.25);
 
     font-family: 'Roboto';
+    font-size: 0.75rem;
+
+    .title {
+        font-weight: 700;
+    }
+
+    @media (min-width: 631px) {
+        font-size: 16px;
+    }
 `
 
 export const FinancialTableHeader = styled.header`
@@ -56,7 +67,6 @@ export const FinancialTableAdd = styled.button`
 
 export const FinancialTableBody = styled.div`
     height: 100%;
-    width: 100%;
 
     .headerStyleDiv {
         display: flex;
@@ -81,5 +91,6 @@ export const StyledSpan = styled.span`
     width: ${(props)=> props.width? props.width :"25%"};
     display: flex;
     justify-content: ${(props) => props.justify || "center"};
-    color: ${(props) => props.color || "black"}
+    color: ${(props) => props.color || "black"};
+    font-weight: 400;
 `
