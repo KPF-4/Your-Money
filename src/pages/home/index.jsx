@@ -1,11 +1,11 @@
-import DailyNews from "../../components/DailyNews/idnex";
-import FeaturedNews from "../../components/FeaturedNews";
 import Header from "../../components/Header";
 import Quotation from "../../components/Quotation";
 import { StyledHome } from "./styles";
 import * as animationData from "../../assets/json-animate/Cotações-animation.json";
 import Lottie from "react-lottie";
 import Footer from "../../components/Footer";
+import NewsArea from "../../components/NewsArea";
+import Investment from "../../components/Investment";
 
 const Home = () => {
   const defaultOptions = {
@@ -18,33 +18,25 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <StyledHome id="home">
       <Header />
-      <StyledHome>
-        <div className="container-home">
-          <div className="cotacao-simualdor">
-            <div id="cotacoes">
-              <figure id="img-figure">
-                <Lottie height={"auto"} options={defaultOptions} />
-              </figure>
-              <Quotation />
-            </div>
-            <div className="simulador">
-              <p>Simulador</p>
-            </div>
+      <div className="container-home">
+        <div className="cotacao-simualdor">
+          <div id="cotacoes">
+            <figure id="img-figure">
+              <Lottie height={"auto"} options={defaultOptions} />
+            </figure>
+            <Quotation />
           </div>
-          <div className="news">
-            <div className="noticiasDiarias">
-              <DailyNews />
-            </div>
-            <div className="noticiasDestaque">
-              <FeaturedNews />
-            </div>
+          <div id="simulador">
+            <figure>Lottie</figure>
+            <Investment />
           </div>
         </div>
-      </StyledHome>
+        <NewsArea />
+      </div>
       <Footer />
-    </div>
+    </StyledHome>
   );
 };
 

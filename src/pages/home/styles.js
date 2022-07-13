@@ -4,6 +4,8 @@ export const StyledHome = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
 
   .container-home {
     width: 80%;
@@ -19,22 +21,8 @@ export const StyledHome = styled.section`
     flex-direction: column;
   }
 
-  .simulador {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .noticiasDiarias {
-    display: none;
-    flex-direction: column;
-  }
-
-  .noticiasDestaque {
-    section {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
+  #simulador {
+    
   }
 
   @media screen and (min-width: 1000px) {
@@ -52,26 +40,9 @@ export const StyledHome = styled.section`
         width: 50%;
       }
     }
-    .cotacao {
+    #cotacao {
       width: 50%;
     }
-
-    .noticiasDestaque {
-      margin-top: 50px;
-      max-width: 270px;
-    }
-
-    .noticiasDiarias {
-      width: 80%;
-      display: flex;
-      justify-content: center;
-    }
-
-    .news {
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-      width: 100%;
-    }
   }
+  
 `;

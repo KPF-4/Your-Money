@@ -1,38 +1,52 @@
 import { StyledFooter } from "./style";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { TiSocialInstagram } from "react-icons/ti";
-import { GrFacebook } from "react-icons/gr";
+import { IoLogoFacebook } from "react-icons/io";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
+  const history = useHistory();
+  const [isHome, setIsHome] = useState(false);
+
+  useEffect(() => {
+    history.location.pathname === "/" ? setIsHome(true) : setIsHome(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <StyledFooter>
-      <div className="Footer-inicio">
-        <p>Inicio </p>
-        <Link to="/" className="Footer-SobreNos">
-          Sobre nós
-        </Link>
-        <div className="Footer-redesSociais">
-          <GrFacebook />
-          <TiSocialInstagram />
-          <AiFillTwitterCircle />
+      <section>
+        <p>Início</p>
+        <div>
+          {isHome ? (
+            <>
+              <a href="#home">Home</a>
+              <a href="#cotacao">Cotação</a>
+              <a href="#simulador">Simulador</a>
+            </>
+          ) : (
+            <>
+              <Link to="/">Home</Link>
+              <Link to="/">Cotação</Link>
+              <Link to="/">Simulador</Link>
+            </>
+          )}
+          {history.location.pathname === "/noticias" ? (
+            <a href="#noticias">Notícias</a>
+          ) : (
+            <Link to="/noticias">Notícias</Link>
+          )}
         </div>
-      </div>
-
-      <div className="Footer-link">
-        <Link to="/" className="Footer-li">
-          Home
-        </Link>
-        <Link to="/" className="Footer-li">
-          Cotação
-        </Link>
-        <Link to="/" className="Footer-li">
-          Simulador
-        </Link>
-        <Link to="/" className="Footer-li">
-          Noticais
-        </Link>
-      </div>
+      </section>
+      <section>
+        <p>Sobre nós</p>
+      </section>
+      <section className="redesSociais">
+        <IoLogoFacebook />
+        <TiSocialInstagram />
+        <AiFillTwitterCircle />
+      </section>
     </StyledFooter>
   );
 };

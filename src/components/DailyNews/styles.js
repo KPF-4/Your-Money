@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const StyledDailyNewsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
   list-style: none;
   justify-content: space-between;
 `;
 
 export const Line = styled.div`
+  margin-top: 20px;
   border-bottom: 1px solid #000;
   width: ${(props) => props.width || "100%"};
   display: flex;
@@ -22,7 +23,6 @@ export const DailyNewsFeatured = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
     width: 100%;
     gap: 30px;
     margin: 5% 0;

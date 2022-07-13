@@ -6,61 +6,29 @@ import { FinancialPlanModal } from "../../components/FinancialPlanModal";
 
 import { useHistory } from "react-router-dom";
 
-import { useState } from "react";
+import { useContext } from "react";
 import { DashBoardTotal } from "../../components/DashBoardTotal";
+import { ModalContext } from "../../providers/modals";
 import { StyledDashboard } from "./styles";
 import Footer from "../../components/Footer";
-import Button from "../../components/Button";
 import SearchDashboard from "../../components/SearchDashboard";
 import FilterDashboard from "../../components/FilterDashboard";
 
 const Dashboard = () => {
-  const [postId, setPostId] = useState(undefined);
-
   const token = localStorage.getItem("@YOURMONEY-TOKEN");
   const history = useHistory();
 
-  const [financialPlanModal, setFinancialPlanModal] = useState(false);
-  const [editFinancialPlanModal, setEditFinancialPlanModal] = useState(false);
-
-  const handleFinancialPlanModal = () => {
-    if (financialPlanModal === false) {
-      setFinancialPlanModal(true);
-    } else {
-      setFinancialPlanModal(false);
-    }
-  };
-
-  const handleEditFinancialPlanModal = (event) => {
-    if (editFinancialPlanModal === false) {
-      setPostId(event.target.id);
-      setEditFinancialPlanModal(true);
-    } else {
-      setEditFinancialPlanModal(false);
-    }
-  };
+  const { playAdd, playEdit } = useContext(ModalContext);
 
   if (token) {
     return (
       <StyledDashboard>
+        {playAdd && <FinancialPlanModal />}
+        {playEdit && <EditPlanModal />}
         <Header />
-        <FinancialPlanModal
-          financialPlanModal={financialPlanModal}
-          handleFinancialPlanModal={handleFinancialPlanModal}
-        />
-        <EditPlanModal
-          postId={postId}
-          handleModal={handleEditFinancialPlanModal}
-          modal={editFinancialPlanModal}
-        />
-
         <SearchDashboard />
         <FilterDashboard />
-
-        <FinancialTable
-          handleFinancialPlanModal={handleFinancialPlanModal}
-          handleEditFinancialPlanModal={handleEditFinancialPlanModal}
-        />
+        <FinancialTable />
         <DashBoardTotal />
         <Grafics />
         <Footer />

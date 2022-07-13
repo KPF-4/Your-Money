@@ -1,5 +1,3 @@
-import Modal from "react-modal";
-
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -10,18 +8,22 @@ import "react-toastify/dist/ReactToastify.css";
 import Input from "../Input";
 import SelectInput from "../SelectInput";
 import Button from "../Button";
-import { CloseModalBtn } from "../CloseModalBtn/style";
-import { FlexComponent, FlexForm, Line } from "../LoginArea/styles";
-import { ModalHeader } from "./style";
+import { Container, ModalHeader, StyleForm, StyleModal } from "./style";
 import ApiFake from "../../Service/api_fake";
 import { useContext } from "react";
 import { GraficsContext } from "../../providers/grafics";
+import { ModalContext} from "../../providers/modals";
 
-export const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanModal} ) => {
+export const FinancialPlanModal = () => {
   const userId = localStorage.getItem("@YOURMONEY-ID")
   const token = localStorage.getItem("@YOURMONEY-TOKEN")
 
   const {setPlayDashboard} = useContext(GraficsContext)
+  const {setAdd} = useContext(ModalContext)
+
+  const handleCloseAdd =()=>{
+    setAdd(false);
+  }
 
   const valueTypeOptions = ["Ganho", "Gasto"];
   const categoryTypeOptions = [
@@ -49,11 +51,12 @@ export const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanMo
   } = useForm({ resolver: yupResolver(formSchema) });
   
   const onSubmitFunction = (data) => {
-    const {entryName, valueType, categoryType, value, date}= data
+    const {entryName, description, valueType, categoryType, value, date}= data
 
     const newData = {
       nome: entryName,
       tipo: valueType,
+      descricao: description,
       categoria: categoryType,
       valor: value,
       data: date,
@@ -84,77 +87,69 @@ export const FinancialPlanModal = ( { financialPlanModal,  handleFinancialPlanMo
   };
 
   return (
-    <Modal
-      className="modal"
-      contentLabel="onRequestClose"
-      isOpen={financialPlanModal}
-      onRequestClose={handleFinancialPlanModal}
-    >
-      <ModalHeader>
-        <FlexComponent justify="space-between" wrap="now-wrap">
-          <h3> Planejamento Financeiro </h3>
-          <CloseModalBtn onClick={() => handleFinancialPlanModal()}>
-            X
-          </CloseModalBtn>
-        </FlexComponent>
-        <Line />
-      </ModalHeader>
+    <Container onClick={handleCloseAdd}>
+      <StyleModal onClick={(e)=> e.stopPropagation()}>
+        <ModalHeader>
+            <h3> Planejamento Financeiro </h3>
+            <button className="close" onClick={handleCloseAdd}>
+              X
+            </button>
+        </ModalHeader>
+        <StyleForm onSubmit={handleSubmit(onSubmitFunction)}>
+            <Input
+              label="Nome da entrada:"
+              placeholder="Digite o nome da entrada"
+              name="entryName"
+              error={errors.entryName}
+              register={register}
+              />
 
-      <FlexForm onSubmit={handleSubmit(onSubmitFunction)}>
-        <FlexComponent direction="column" gap="10px" className="data-content">
-          <Input
-            label="Nome da entrada:"
-            placeholder="Digite o nome da entrada"
-            name="entryName"
-            error={errors.entryName}
-            register={register}
-          />
+            <Input
+              label="Descrição:"
+              placeholder="Digite a descrição da entrada"
+              name="description"
+              error={errors.description}
+              register={register}
+              />
 
-          <Input
-            label="Descrição:"
-            placeholder="Digite a descrição da entrada"
-            name="description"
-            error={errors.description}
-            register={register}
-          />
+            <SelectInput
+              label="Tipo de valor"
+              name="valueType"
+              error={errors.valueType}
+              inputOptions={valueTypeOptions}
+              register={register}
+            />
 
-          <SelectInput
-            label="Tipo de valor"
-            name="valueType"
-            error={errors.valueType}
-            inputOptions={valueTypeOptions}
-            register={register}
-          />
+            <SelectInput
+              label="Categoria"
+              name="categoryType"
+              error={errors.categoryType}
+              inputOptions={categoryTypeOptions}
+              register={register}
+            />
+            <div className="valueDate">
+              <Input
+                label="Valor:"
+                placeholder="R$"
+                name="value"
+                error={errors.value}
+                register={register}
+              />
 
-          <SelectInput
-            label="Categoria"
-            name="categoryType"
-            error={errors.categoryType}
-            inputOptions={categoryTypeOptions}
-            register={register}
-          />
+              <Input
+                label="Data:"
+                name="date"
+                type="date"
+                error={errors.date}
+                register={register}
+                />
+            </div>
 
-          <Input
-            label="Valor:"
-            placeholder="R$"
-            name="value"
-            error={errors.value}
-            register={register}
-          />
-
-          <Input
-            label="Data:"
-            name="date"
-            type="date"
-            error={errors.date}
-            register={register}
-          />
-
-          <Button background="#38C172" width="100%" type="submit">
-            Cadastrar
-          </Button>
-        </FlexComponent>
-      </FlexForm>
-    </Modal>
+            <Button background="#38C172" width="100%" type="submit">
+              Cadastrar
+            </Button>
+        </StyleForm>
+      </StyleModal>
+    </Container>
   );
 };

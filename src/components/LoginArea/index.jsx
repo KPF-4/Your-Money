@@ -70,7 +70,7 @@ const LoginArea = () => {
           />
 
           <FlexComponent justify="center" align="flex-end">
-            <Button background="#3490DC" width="60%">
+            <Button background="var(--blue-button)" width="60%">
               Entrar
             </Button>
           </FlexComponent>
@@ -81,7 +81,7 @@ const LoginArea = () => {
           </FlexComponent>
           <Link to="/registro">
             <FlexComponent justify="center">
-              <Button background="#38C172" width="60%">
+              <Button background="var(--green-button)" width="60%">
                 Cadastre-se
               </Button>
             </FlexComponent>

@@ -9,10 +9,19 @@ import { Line } from "../LoginArea/styles";
 import { BiAddToQueue } from "react-icons/bi"
 import { useContext } from "react";
 import { GraficsContext } from "../../providers/grafics";
+import { ModalContext } from "../../providers/modals";
 
-export const FinancialTable = ( {handleEditFinancialPlanModal, handleFinancialPlanModal } ) => {
+export const FinancialTable = () => {
     const {data} = useContext(GraficsContext)
-
+    const{ setAdd, setEdit, setPostId} = useContext(ModalContext)
+    
+    const handleAdd = ()=>{
+        setAdd(true)
+    }
+    const handleEdit = (event)=>{
+        setPostId(event.target.id)
+        setEdit(true)
+    }
 
     return (
         <FinancialTableContainer>
@@ -22,9 +31,9 @@ export const FinancialTable = ( {handleEditFinancialPlanModal, handleFinancialPl
                         Tabela Financeira
                     </h3>
 
-                    <div className="headerBtn" onClick={() => handleFinancialPlanModal()}>
+                    <div className="headerBtn" onClick={handleAdd}>
                         <BiAddToQueue />
-                        <FinancialTableAdd >
+                        <FinancialTableAdd onClick={handleAdd}>
                             Adicionar
                         </FinancialTableAdd>
                     </div>
@@ -61,7 +70,7 @@ export const FinancialTable = ( {handleEditFinancialPlanModal, handleFinancialPl
                     <div 
                         key={index}
                         id={element.id}
-                        onClick={(event) => handleEditFinancialPlanModal(event)} >
+                        onClick={handleEdit} >
                         <div className="item">
                             <StyledSpan 
                                 id={element.id} 
