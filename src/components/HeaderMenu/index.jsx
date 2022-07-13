@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-const HeaderMenu = ({ showMenu }) => {
+const HeaderMenu = ({ showMenu, handleMenu }) => {
   const [closeMenu, setCloseMenu] = useState(true);
 
   useEffect(() => {
@@ -26,15 +26,8 @@ const HeaderMenu = ({ showMenu }) => {
 
   return (
     <StyledMenu closeMenu={closeMenu} showMenu={showMenu}>
-      {history.location.pathname === "/dashboard" ? (
+      {history.location.pathname === "/" ? (
         <>
-          <div>
-            <Link to="/">
-              <Line id="flexHome">
-                <p>Home</p>
-              </Line>
-            </Link>
-          </div>
           <div>
             <Link to="/dashboard">
               <GoGraph />
@@ -43,11 +36,11 @@ const HeaderMenu = ({ showMenu }) => {
             </Link>
           </div>
           <div>
-            <Link to="/cotacao">
+            <a href="#cotacao" onClick={handleMenu}>
               <BsGraphUp />
               <p>Cotação</p>
               <span></span>
-            </Link>
+            </a>
           </div>
           <div>
             <Link to="/noticias">
@@ -67,14 +60,21 @@ const HeaderMenu = ({ showMenu }) => {
       ) : (
         <>
           <div>
-            <Link to="/simulador">
+            <Link to="/">
+              <Line id="flexHome">
+                <p>Home</p>
+              </Line>
+            </Link>
+          </div>
+          <div>
+            <Link to="/dashboard">
               <GoGraph />
               <p>Simulador</p>
               <span></span>
             </Link>
           </div>
           <div>
-            <Link to="/cotacao">
+            <Link to="/">
               <BsGraphUp />
               <p>Cotação</p>
               <span></span>

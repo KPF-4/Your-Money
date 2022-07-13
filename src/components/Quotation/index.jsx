@@ -47,7 +47,7 @@ const Quotation = () => {
   };
 
   return (
-    <div className="cotacao">
+    <div id="cotacao">
       <StyleQuotation>
         <h3 className="title">Cotação de Moedas</h3>
         <div className="list-titles">
