@@ -1,12 +1,8 @@
 import styled from "styled-components";
 
 export const FinancialTableContainer = styled.div`
-    /* margin: 20px auto;
-    width: 100vw;
-    max-width: 90%;
-    min-width: 380px; */
-    margin: 20px 0;
-    width: 80%;
+    margin-top: 20px;
+    width: 100%;
     height: fit-content;
 
     display: flex;
@@ -41,28 +37,25 @@ export const FinancialTableHeader = styled.header`
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }
-
-    .headerBtn {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 25%;
+        gap: 10%;
     }
 `
 
 export const FinancialTableAdd = styled.button`
-    width: 80%;
     height: 100%;
 
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    align-items: flex-end;
+    flex-direction: row;
     justify-content: space-between;
     
     border: none;
     background: white;
     font-weight: bold;
+    svg {
+        height: 20px;
+        width: 20px;
+    }
 `
 
 export const FinancialTableBody = styled.div`

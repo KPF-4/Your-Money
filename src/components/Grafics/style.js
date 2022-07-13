@@ -1,15 +1,12 @@
 import styled from "styled-components";
 
 export const StyleGrafics = styled.section`
-    width: 100vw;
-    max-width: 90%;
-    margin: auto;
+    width: 100%;
     font-family: 'Roboto';
 
     .container-Grafics{
         width: 100vw;
         max-width: 100%;
-        min-width: 280px;
         display: flex;
         flex-direction: column;
         margin: auto;
@@ -28,8 +25,7 @@ export const StyleGrafics = styled.section`
 
     .grafic{
         width: 100vw;
-        max-width: 60%;
-        min-width: 250px;
+        max-width: 400px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -41,7 +37,6 @@ export const StyleGrafics = styled.section`
     .grafic-evolucao{
         width: 100vw;
         max-width: 90%;
-        min-width: 250px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -66,11 +61,17 @@ export const StyleGrafics = styled.section`
     
     select{
         height: 2rem;
-        max-width: 60%;
-        min-width: 250px;
+        width: 100%;
         border-radius: 0.5rem;
         border: 1px solid var(--grey);
         background-color: var(--white);
     }
 
+    @media (min-width: 1000px) {
+        select{
+
+            width: 70%;
+        }
+        margin: 20px 0;
+    }
 `

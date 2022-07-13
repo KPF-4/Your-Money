@@ -287,7 +287,6 @@ export const Grafics = () => {
 
   return (
     <StyleGrafics>
-      <h2>Gráficos Financeiros</h2>
       <section className="container-Grafics">
         <div className="filtros">
           <span>Gráficos</span>
