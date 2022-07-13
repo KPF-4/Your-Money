@@ -9,6 +9,15 @@ export const FeaturedNewsArea = styled.ul`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 20px;
+
+    @media (min-width: 1000px) {
+      display: none;
+    }
+
+    @media (min-width: 1360px) {
+      display: flex;
+    }
 `
 
 export const FeaturedNewsCard = styled.li`

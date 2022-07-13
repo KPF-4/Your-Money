@@ -38,7 +38,7 @@ const Home = () => {
             <Quotation />
           </div>
           <SimualdorStyle>
-            <figure>
+            <figure  id="simulador">
               <Lottie height={"auto"} options={defaultOptions1} />
             </figure>
             <Investment />
