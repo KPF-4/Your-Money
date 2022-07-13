@@ -22,9 +22,9 @@ export const FinancialTable = ( {handleEditFinancialPlanModal, handleFinancialPl
                         Tabela Financeira
                     </h3>
 
-                    <div className="headerBtn">
+                    <div className="headerBtn" onClick={() => handleFinancialPlanModal()}>
                         <BiAddToQueue />
-                        <FinancialTableAdd onClick={() => handleFinancialPlanModal()}>
+                        <FinancialTableAdd >
                             Adicionar
                         </FinancialTableAdd>
                     </div>
