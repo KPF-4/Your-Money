@@ -4,6 +4,7 @@ import { DailyNewsProvider } from "./dailyNews";
 import { ScrollProvider } from "./scroll";
 import { GraficsProvider } from "./grafics";
 import { FeaturedNewsProvider } from "./featuredNews";
+import { SimulatorProvider } from "./simulator";
 
 const Providers = ({ children }) => {
   return (
@@ -12,7 +13,9 @@ const Providers = ({ children }) => {
         <QuotationProvider>
           <DailyNewsProvider>
             <FeaturedNewsProvider>
-              <ScrollProvider>{children}</ScrollProvider>
+              <SimulatorProvider>
+                <ScrollProvider>{children}</ScrollProvider>
+              </SimulatorProvider>
             </FeaturedNewsProvider>
           </DailyNewsProvider>
         </QuotationProvider>
