@@ -9,6 +9,7 @@ import {
   FormStyle,
   RangeConteiner,
   RangeStyle,
+  SectionContainer,
   SelectStyle,
   TitleConteiner,
 } from "./styles";
@@ -43,7 +44,7 @@ const Investment = () => {
     });
 
   return (
-    <section>
+    <SectionContainer>
       <TitleConteiner>
         <h3>Simulador de Aplicação</h3>
       </TitleConteiner>
@@ -87,7 +88,8 @@ const Investment = () => {
               <p htmlFor="">Tempo de investimento.</p>
               <p>{months > 1 ? `${months} meses` : `${months} mês`} </p>
             </span>
-            <RangeStyle
+            <input
+              id="RangerStyle"
               type="range"
               min={0}
               max={10}
@@ -128,7 +130,7 @@ const Investment = () => {
           </Button>
         </Container>
       )}
-    </section>
+    </SectionContainer>
   );
 };
 export default Investment;

@@ -1,10 +1,24 @@
 import styled from "styled-components";
-
+export const SectionContainer = styled.section`
+width: 100%;
+@media (min-width: 1000px) {
+  width: 50%;
+  margin-top: 20px;
+}
+`
 export const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  
+  gap: 20px;
+  @media (min-width: 1000px) {
+    input{
+      height: 2.5rem;
+    }
+    gap: 30px;
+    select{
+      height:2.5rem;
+    }
+}
   label {
     font-size: .94rem;
     margin-bottom: 8px;
@@ -68,6 +82,28 @@ export const RangeConteiner = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
+  }
+  #RangerStyle{
+  width: 100%;
+  margin: 1rem 0 1rem 0;
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-block;
+  height: 0.3em;
+  left: 4em;
+  border-radius: 5px;
+  border: solid 0.5px var(--green);
+  background-color: none;
+  outline: none;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--green);
+    cursor: pointer;
+  }
   }
 `;
 export const ButtonStyle = styled.div`
