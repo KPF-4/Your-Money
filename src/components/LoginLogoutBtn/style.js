@@ -37,7 +37,7 @@ export const StyledButton = styled.button`
 export const UserOptions = styled.section`
   position: absolute;
   top: 150%;
-  left: -95%;
+  left: -50%;
   display: ${props => props.showOptions ? "flex" : "none"};
   flex-direction: column;
   align-items: center;
@@ -48,6 +48,6 @@ export const UserOptions = styled.section`
 
   a,
   p {
-    padding: 8px 50px;
+    padding: 8px 30px;
   }
 `;
