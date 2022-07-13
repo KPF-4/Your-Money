@@ -82,14 +82,14 @@ export const Container = styled.div`
   p {
     font-family: Roboto;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: .875rem;
     line-height: 23.44px;
   }
  
   h3 {
     font-family: Montserrat;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1rem;
     line-height: 23.44px;
     margin-bottom: 5px;
   }
