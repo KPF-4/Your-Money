@@ -21,9 +21,8 @@ export const StyledHome = styled.section`
     flex-direction: column;
   }
 
-  .simulador {
-    display: flex;
-    flex-direction: row;
+  #simulador {
+    
   }
 
   @media screen and (min-width: 1000px) {

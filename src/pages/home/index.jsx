@@ -5,6 +5,7 @@ import * as animationData from "../../assets/json-animate/Cotações-animation.j
 import Lottie from "react-lottie";
 import Footer from "../../components/Footer";
 import NewsArea from "../../components/NewsArea";
+import Investment from "../../components/Investment";
 
 const Home = () => {
   const defaultOptions = {
@@ -27,8 +28,9 @@ const Home = () => {
             </figure>
             <Quotation />
           </div>
-          <div className="simulador">
-            <p id="simulador">Simulador</p>
+          <div id="simulador">
+            <figure>Lottie</figure>
+            <Investment />
           </div>
         </div>
         <NewsArea />

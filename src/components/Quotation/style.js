@@ -17,7 +17,7 @@ export const StyleQuotation = styled.section`
     .title{
         width: 100vw;
         max-width: 70%;
-        font-size: .75rem;
+        font-size: 1rem;
         font-weight: 700;
         text-align: left;
         border-bottom: 1px solid var(--black);
@@ -67,7 +67,7 @@ export const StyleForm = styled.form`
         
         width: 100vw;
         max-width: 70%;
-        font-size: .75rem;
+        font-size: 1rem;
         font-weight: 700;
         text-align: left;
         border-bottom: 1px solid var(--black);
@@ -77,7 +77,7 @@ export const StyleForm = styled.form`
     span{
         font-family: "Roboto";
         font-weight: 700;
-        font-size: .8125rem;
+        font-size: .94rem;
         padding: 0.5rem 0 0.5rem 0;
 
     }
@@ -134,7 +134,7 @@ export const StyleResult = styled.section`
     .title{
         width: 100vw;
         max-width: 70%;
-        font-size: .75rem;
+        font-size: 1rem;
         font-weight: 700;
         text-align: left;
         border-bottom: 1px solid var(--black);

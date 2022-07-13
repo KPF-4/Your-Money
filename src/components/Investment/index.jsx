@@ -31,19 +31,23 @@ const Investment = () => {
   } = useContext(SimulatorContext);
   useEffect(() => {
     setMonths(month[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [render]);
-  function rangerFunction(e) {
+
+  const rangerFunction = (e) => {
     setMonths(month[e.target.value]);
-  }
+  };
+
   const valor = (data) =>
     data.toLocaleString("pt-br", {
       style: "currency",
       currency: "BRL",
     });
+
   return (
     <section>
       <TitleConteiner>
-        <h2>Simuldador de Aplicação</h2>
+        <h3>Simulador de Aplicação</h3>
       </TitleConteiner>
       {render === false ? (
         <FormStyle onSubmit={handleSubmit(onSubmitFunction)}>
@@ -55,8 +59,8 @@ const Investment = () => {
             type="text"
             placeholder="Nome da aplicação"
           />
-          <label htmlFor="teste"> Tipos de investimento</label>
           <SelectStyle>
+            <label htmlFor="teste"> Tipos de investimento</label>
             <select name="teste" {...register("treasureValue")}>
               <option value="DEFAULT" hidden>
                 Selecione o investimento
@@ -77,9 +81,9 @@ const Investment = () => {
             type="number"
             name={"initialValue"}
             error={errors.initialValue}
-            label={"Valor para investir"}
+            label={"Valor"}
             register={register}
-            placeholder="Valor para investir"
+            placeholder="Valor do investimento"
           />
           <RangeConteiner>
             <span>
@@ -102,7 +106,7 @@ const Investment = () => {
         </FormStyle>
       ) : (
         <Container>
-          <h2>{name}</h2>
+          <h3>{name}</h3>
           <p>Periodo: {months > 1 ? `${months} meses` : `${months} mês`}</p>
           <p>
             Rentabilidade
@@ -114,7 +118,7 @@ const Investment = () => {
           </p>
           <p>Valor investido: {valor(valueinitial)}</p>
           <p>Valor líquido: {valor(value - valueinitial)} </p>
-          <h2>Valor total: {valor(value)}</h2>
+          <h3>Valor total: {valor(value)}</h3>
 
           <Button
             width="47%"
