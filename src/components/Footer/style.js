@@ -27,7 +27,7 @@ export const StyledFooter = styled.footer`
   p {
     font-family: "Lobster";
     font-style: normal;
-    font-size: 180%;
+    font-size: 140%;
   }
 
   div {
@@ -51,5 +51,6 @@ export const StyledFooter = styled.footer`
 
   @media (min-width: 631px) {
     gap: 10%;
+    font-size: 120%;
   }
 `;
