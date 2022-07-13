@@ -35,27 +35,27 @@ export const SimulatorProvider = ({ children }) => {
     switch (months) {
       case 360:
         const calc360 =
-          Number(data.initialValue) * (1 + Number(treasure[0])) * (7253 / 252);
+          Number(data.initialValue) * (Number(treasure[0]) === 0.2039 ? (1 + 2.274) : (1 + Number(treasure[0]))) * (7253 / 252);
         setValue(calc360);
         break;
       case 60:
         const calc60 =
-          Number(data.initialValue) * (1 + Number(treasure[0])) * (1257 / 252);
+          Number(data.initialValue) * (1 + Number(treasure[0])) * (380 / 252);
         setValue(calc60);
         break;
       case 48:
         const calc48 =
-          Number(data.initialValue) * (1 + Number(treasure[0])) * (1007 / 252);
+          Number(data.initialValue) * (1 + Number(treasure[0])) * (350 / 252);
         setValue(calc48);
         break;
       case 24:
         const calc24 =
-          Number(data.initialValue) * (1 + Number(treasure[0])) * (500 / 252);
+          Number(data.initialValue) * (1 + Number(treasure[0])) * (275 / 252);
         setValue(calc24);
         break;
       case 12:
         const calc12 =
-          Number(data.initialValue) * (1 + Number(treasure[0])) * (251 / 252);
+          Number(data.initialValue) * (1 + Number(treasure[0])) * (230 / 252);
         setValue(calc12);
         break;
       default:

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useContext } from "react";
 import { SimulatorContext } from "../../providers/simulator";
 import Button from "../Button";
@@ -29,10 +28,6 @@ const Investment = () => {
     treasur,
     name,
   } = useContext(SimulatorContext);
-  useEffect(() => {
-    setMonths(month[0]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [render]);
 
   const rangerFunction = (e) => {
     setMonths(month[e.target.value]);
@@ -66,10 +61,9 @@ const Investment = () => {
                 Selecione o investimento
               </option>
               <option value="0.1308-Tesouro Direto">Tesouro Direto</option>
-              <option value="0.1325-Tesouro Selic">Tesouro Selic</option>
-              <option value="0.0005-Poupança">Poupança</option>
-              <option value="1.27-CDB e LC">CDB e LC</option>
-              <option value="0.1307-LCI e LCA">LCI e LCA</option>
+              <option value="0.163-Tesouro Selic">Tesouro Selic</option>
+              <option value="0.2039-CDB e LC">CDB e LC</option>
+              <option value="0.163-LCI e LCA">LCI e LCA</option>
             </select>
 
             {errors.treasureValue && (
@@ -110,11 +104,13 @@ const Investment = () => {
           <p>Periodo: {months > 1 ? `${months} meses` : `${months} mês`}</p>
           <p>
             Rentabilidade
-            {treasur[1] === "Poupança"
-              ? `da ${treasur[1]} é ${treasur[0] * 100}%`
-              : treasur[1] === "CDB e LC" || treasur[1] === "LCI e LCA"
-              ? ` do ${treasur[1]} é ${treasur[0] * 100}% do CDI`
-              : ` do ${treasur[1]} é ${treasur[0] * 100}%`}
+            {treasur[1] === "LCI e LCA"
+              ? `da ${treasur[1]} é 98% do CDI.`
+              : treasur[1] === "CDB e LC"
+              ? ` do ${treasur[1]} é 127% do CDI`
+              : treasur[1] === "Tesouro Selic"
+              ? `do ${treasur[1]} é 13,25%`
+              : `do ${treasur[1]} é ${treasur[0] * 100}%`}
           </p>
           <p>Valor investido: {valor(valueinitial)}</p>
           <p>Valor líquido: {valor(value - valueinitial)} </p>
