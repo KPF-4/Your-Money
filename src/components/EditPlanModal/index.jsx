@@ -1,56 +1,39 @@
-import Modal from "react-modal";
+import { 
+  StyleModal, 
+  Container, 
+  ModalHeader,
+  StyleForm, 
+  StyleEdit 
+} from "./style";
 
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useContext, useState } from "react";
+import { useContext, useRef, useState} from "react";
 import { useForm } from "react-hook-form";
+import {toast} from "react-toastify"
 
-import Input from "../Input";
 import Button from "../Button";
-import SelectInput from "../SelectInput";
 
-import { CloseModalBtn } from "../CloseModalBtn/style";
-import { FlexComponent, FlexForm, Line } from "../LoginArea/styles";
-import { ModalHeader } from "./style";
 import ApiFake from "../../Service/api_fake";
 import { GraficsContext } from "../../providers/grafics";
+import { ModalContext } from "../../providers/modals";
 
-const EditPlanModal = ( { postId, handleModal, modal } ) => {
-    const [entryType, setEntryType] = useState("Entrada");
-    const [categoryType, setCategoryType] = useState("Moradia");
-    const userID = localStorage.getItem("@YOURMONEY-USER")
+const EditPlanModal = () => {
     const token = localStorage.getItem("@YOURMONEY-TOKEN")
-    const {data} = useContext(GraficsContext)   
-
+    
+    const {setPlayDashboard, data} = useContext(GraficsContext) 
+    const {setEdit, postId} = useContext(ModalContext) 
+    
     const dataEdit = data?.filter((el)=> parseInt(el.id)=== parseInt(postId))
     
-    const valueTypeOptions = ["Gasto", "Ganho"];
-    const categoryTypeOptions = [
-      "Moradia",
-      "Mercado",
-      "Viagem",
-      "Investimentos",
-      "Salário",
-      "Outros",
-    ];
-  
-    const formSchema = yup.object().shape({
-      entryName: yup
-        .string()
-        .required("Digite o nome da entrada"),
+    const handleCloseEdit=()=>{
+      setEdit(false)
+    }
 
-      description: yup
-        .string()
-        .required("Digite a descrição da entrada"),
-  
-      amountValue: yup
-        .string()
-        .required("Digite um valor"),
-  
-      date: yup
-        .string()
-        .required("Preencha com uma data"),
+    const formSchema = yup.object().shape({
+      description: yup.string().required("Digite a descrição da entrada"),
+      value: yup.number().typeError("Digite um valor").required("Digite um valor"),
     });
   
     const {
@@ -58,116 +41,125 @@ const EditPlanModal = ( { postId, handleModal, modal } ) => {
       handleSubmit,
       formState: { errors },
     } = useForm({ resolver: yupResolver(formSchema) });
+    
+    const config = {
+      headers: { "Authorization": `Bearer ${token}`}
+    };
   
     const onSubmitFunction = (data) => {
-      data.userId = userID
-      data.entryType = entryType;
-      data.categoryType = categoryType;
+      const {description, value}= data
 
-      const config = {
-        headers: { "Authorization": `Bearer ${JSON.parse(token)}`}
-      };
+      const newData = {
+        descricao: description,
+        valor: value,
+      };    
 
-      console.log(postId)
-  
-      ApiFake
-        .patch(`/financeiro/${postId}`, data, config)
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err))
+      const resolve = new Promise((resolve, reject) => {
+        ApiFake
+        .patch(`/financeiro/${postId}`, newData, config)
+        .then((res) => {
+          setTimeout(resolve)
+          setPlayDashboard(true)
+          console.log(res)
+          setEdit(false)
+        })
+        .catch((err) => {
+          setTimeout(reject)
+          console.log(err)
+        });
+      })
+        
+      toast.promise(resolve, {
+        pending: "Aguarde",
+        success: "Sucesso ao editar",
+        error: "Erro ao editar",
+      })
     };
+
+    const handleDelete = ()=>{
+      const resolve = new Promise((resolve, reject) => {
+        ApiFake
+        .delete(`/financeiro/${postId}`, config)
+        .then((res) => {
+          setTimeout(resolve)
+          setPlayDashboard(true)
+          console.log(res)
+        })
+        .catch((err) => {
+          setTimeout(reject)
+          console.log(err)
+        });
+      })
+        
+      toast.promise(resolve, {
+        pending: "Aguarde",
+        success: "Deletado com sucesso",
+        error: "Erro ao deletar",
+      })
+    }
+
     return (
-      <Modal
-        className="modal"
-        contentLabel="onRequestClose"
-        isOpen={modal}
-        onRequestClose={handleModal}
-      >
-        <ModalHeader>
-          <FlexComponent justify="space-between" wrap="now-wrap">
-            <h3> Editar informações </h3>
-            <CloseModalBtn onClick={handleModal}>
-              X
-            </CloseModalBtn>
-          </FlexComponent>
-          <Line />
-        </ModalHeader>
-  
-        <FlexForm onSubmit={handleSubmit(onSubmitFunction)}>
-          <FlexComponent 
-            direction="column" 
-            gap="10px" 
-            className="data-content"
-          >
+      <Container onClick={handleCloseEdit}>
+        <StyleModal onClick={(e)=> e.stopPropagation()}>
+          <ModalHeader>
+              <h3> Editar informações </h3>
+              <button className="close" onClick={handleCloseEdit}>
+                X
+              </button>
+          </ModalHeader>
 
-            <Input
-              label="Nome da entrada:"
-              placeholder={dataEdit[0]?.nome}
-              name="entryName"
-              error={errors.entryName}
-              register={register}
-              //value={dataEdit[0]?.nome}
-           />
-  
-            <Input
-              label="Descrição:"
-              //placeholder={dataEdit[0]?.descricao}
-              name="description"
-              error={errors.description}
-              register={register}
-              //value={parseFloat(dataEdit[0]?.descricao)}
-            />
-  
-            <SelectInput
-              label="Tipo de valor"
-              name="valueType"
-              setValue={setEntryType}
-              error={errors.description}
-              register={register}
-              inputOptions={valueTypeOptions}
-              //value={dataEdit[0]?.tipo}
+          <StyleForm onSubmit={handleSubmit(onSubmitFunction)}>
+            <StyleEdit>
+              <div className="inputEdit">
+                <span className="labelEdit">Nome da entrada:</span>
+                <span > 
+                  {dataEdit[0]?.nome}
+                </span>
+              </div>
 
-            />
-  
-            <SelectInput
-              label="Categoria"
-              name="category"
-              setValue={setCategoryType}
-              error={errors.description}
-              register={register}
-              value={dataEdit[0]?.categoria}
-              inputOptions={categoryTypeOptions}
-            />
-  
-            <Input
-              label="Valor:"
-              placeholder={parseFloat(dataEdit[0]?.valor)}
-              name="amountValue"
-              error={errors.value}
-              register={register}
-              value={parseFloat(dataEdit[0]?.valor)}
+              <label htmlFor="description">Descrição:</label>
+              <input
+                placeholder={dataEdit[0]?.descricao}
+                {...register("description")}
+              />
+              {errors.description && <span>{errors.description.message}</span>}
 
-            />
-  
-            <Input
-              label="Data:"
-              name="date"
-              //placeholder={dataEdit.data}
-              type="date"
-              error={errors.date}
-              register={register}
-              //value={dataEdit[0].data}
+              <div className="inputEdit">
+                <span className="labelEdit">Tipo de valor:</span>
+                <span>
+                  {dataEdit[0]?.tipo}
+                </span>
+              </div>
 
-            />
-  
-            <Button background="#38C172" width="100%" type="submit">
-              Editar
-            </Button>
-          </FlexComponent>
-        </FlexForm>
-            <Button background="#e66060" width="100%">
-              Deletar
-            </Button>
-      </Modal>
+              <div className="inputEdit">
+                <span className="labelEdit">Categoria:</span>
+                <span >
+                  {dataEdit[0]?.categoria}
+                </span >
+              </div>
+              <label htmlFor="value">Valor:</label>
+              <input
+                placeholder={dataEdit[0]?.valor}
+                {...register("value")}
+              />
+              {errors.value && <span>{errors.value.message}</span>}
+
+              <div className="inputEdit">
+                <span className="labelEdit">Data:</span>
+                <span>
+                  {dataEdit[0]?.data}
+                </span>
+              </div>
+            </StyleEdit>
+              <Button background="#38C172" width="100%" type="submit">
+                Editar
+              </Button>
+          </StyleForm>
+          <Button onClick={handleDelete} background="#e66060" width="100%">
+            Deletar
+          </Button>
+        </StyleModal>
+      </Container>
     );
   };
   

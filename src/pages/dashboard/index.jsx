@@ -6,62 +6,30 @@ import { FinancialPlanModal } from "../../components/FinancialPlanModal"
 
 import { useHistory } from "react-router-dom"
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { DashBoardTotal } from "../../components/DashBoardTotal"
+import { ModalContext } from "../../providers/modals"
 
 const Dashboard = () => {
-    const [postId, setPostId] = useState(undefined)
-
     const token = localStorage.getItem("@YOURMONEY-TOKEN")
     const history = useHistory()
 
-    const [financialPlanModal, setFinancialPlanModal] = useState(false);
-    const [editFinancialPlanModal, setEditFinancialPlanModal] = useState(false)
+    const{playAdd, playEdit}= useContext(ModalContext);
 
-    const handleFinancialPlanModal = () => {
-      if (financialPlanModal === false) {
-        setFinancialPlanModal(true);
-      } else {
-        setFinancialPlanModal(false);
-      }
-    }
-    
-    const handleEditFinancialPlanModal = (event) => {
-      if (editFinancialPlanModal === false) {
-        setPostId(event.target.id)
-        setEditFinancialPlanModal(true)
-      } else {
-        setEditFinancialPlanModal(false)
-      }
-    }
-
-    if(token){
-        return(
-            <>
-                <Header />
-                <FinancialPlanModal 
-                  financialPlanModal={financialPlanModal}
-                  handleFinancialPlanModal={handleFinancialPlanModal}
-                />
-
-                <EditPlanModal
-                  postId={postId}
-                  handleModal={handleEditFinancialPlanModal}
-                  modal={editFinancialPlanModal}
-                />
-
-                <FinancialTable 
-                  handleFinancialPlanModal={handleFinancialPlanModal} 
-                  handleEditFinancialPlanModal={handleEditFinancialPlanModal}
-                />
-
-                <DashBoardTotal/>
-                <Grafics/>
-            </>
-        )
-    } else {
-        history.push("/login")
-    }
+  if(token){
+      return(
+        <>
+          {playAdd && <FinancialPlanModal/>}
+          {playEdit && <EditPlanModal/>}
+          <Header/>
+          <FinancialTable/>
+          <DashBoardTotal/>
+          <Grafics/>
+        </>
+      )
+  } else {
+      history.push("/login")
+  }
     
 }
 

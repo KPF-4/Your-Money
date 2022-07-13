@@ -1,7 +1,9 @@
+import { useRef } from "react";
 import { Container, Label } from "../Input/styles";
 import { SelectContainer } from "./style";
 
-const SelectInput = ({ setValue, label, name, inputOptions, error, value, register}) => {
+const SelectInput = ({ setValue, label, name, inputOptions, error, register}) => {
+
   return (
     <>
       <Container>
