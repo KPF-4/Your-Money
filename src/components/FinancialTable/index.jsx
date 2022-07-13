@@ -36,19 +36,19 @@ export const FinancialTable = ( {handleEditFinancialPlanModal, handleFinancialPl
             <FinancialTableBody>
                 <header className="headerStyleDiv">
                     <div className="headerContent">
-                        <StyledSpan justify="flex-start">
+                        <StyledSpan className="title" justify="flex-start">
                             Nome
                         </StyledSpan>
 
-                        <StyledSpan>
+                        <StyledSpan className="title">
                             Tipo
                         </StyledSpan>
 
-                        <StyledSpan>
+                        <StyledSpan className="title">
                             Categoria
                         </StyledSpan>
 
-                        <StyledSpan justify="flex-end">
+                        <StyledSpan className="title" justify="flex-end">
                             Valor
                         </StyledSpan>
                         
@@ -65,7 +65,9 @@ export const FinancialTable = ( {handleEditFinancialPlanModal, handleFinancialPl
                         <div className="item">
                             <StyledSpan 
                                 id={element.id} 
-                                justify="flex-start">
+                                className="title"
+                                justify="flex-start"
+                                >
                                 {element.nome}
                             </StyledSpan>
                             
@@ -84,8 +86,10 @@ export const FinancialTable = ( {handleEditFinancialPlanModal, handleFinancialPl
                             )}
 
                             <StyledSpan 
-                                id={element.id} >
-                                {element.categoria}
+                                id={element.id}
+                                className="category"
+                                >
+                                    {element.categoria}
                             </StyledSpan>
 
                             {element.tipo === "Ganho" ? (
