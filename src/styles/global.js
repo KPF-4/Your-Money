@@ -15,6 +15,7 @@ export default createGlobalStyle`
         --white: #ffffff;
         --black: #000000;
         --blue-button: #3490DC;
+        --green-button:#38C172;
     }
 
     h1 {
