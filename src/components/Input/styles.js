@@ -15,5 +15,8 @@ export const InputContainer = styled.input`
 
   font-size: 14px;
   font-family: 'Roboto';
+  @media screen {
+    
+  }
 `;
 export const Label = styled.label``;
