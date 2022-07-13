@@ -21,6 +21,7 @@ export const FormStyle = styled.form`
 }
   label {
     font-size: .94rem;
+    font-weight: 700;
     margin-bottom: 8px;
   }
   select {

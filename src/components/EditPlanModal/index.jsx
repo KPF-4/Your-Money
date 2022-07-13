@@ -144,7 +144,7 @@ const EditPlanModal = () => {
               <span>{dataEdit[0]?.data}</span>
             </div>
           </StyleEdit>
-          <div>
+          <div className="confirmEdit">
             <Button background="var(--green-button)" width="100%" type="submit">
               Editar
             </Button>

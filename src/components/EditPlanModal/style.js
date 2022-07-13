@@ -60,6 +60,11 @@ export const StyleForm = styled.form`
     flex-direction: column;
     gap: .5rem;
 
+    .confirmEdit {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
 `
 export const StyleEdit = styled.div`
     
@@ -87,7 +92,8 @@ export const StyleEdit = styled.div`
         font-family: 'Roboto';
 
         span{
-            border: 1px solid #5a5858;
+            border: 1px solid var(--grey);
+            font-weight: 700;
             border-radius: 5.33px;
             color: var(--grey);
             height: 35px;
@@ -98,6 +104,7 @@ export const StyleEdit = styled.div`
 
         }
         .labelEdit{
+            margin-bottom: .5rem;
             background-color: #ffffff;
             border: none;
             padding: 0;
