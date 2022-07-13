@@ -1,8 +1,6 @@
-import { useRef } from "react";
 import { Container, InputContainer, Label } from "./styles";
 
 const Input = ({ id, label, error, register, name, ...rest }) => {
-  const ref = useRef(null)
 
   return (
     <Container>

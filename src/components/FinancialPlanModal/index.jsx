@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Input from "../Input";
 import SelectInput from "../SelectInput";
 import Button from "../Button";
-import { CloseModalBtn } from "../CloseModalBtn/style";
 import { Container, ModalHeader, StyleForm, StyleModal } from "./style";
 import ApiFake from "../../Service/api_fake";
 import { useContext } from "react";

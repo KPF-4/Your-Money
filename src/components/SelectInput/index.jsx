@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { Container, Label } from "../Input/styles";
 import { SelectContainer } from "./style";
 
