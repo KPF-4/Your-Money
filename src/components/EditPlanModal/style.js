@@ -31,7 +31,6 @@ export const StyleModal = styled.div`
     padding: 1rem;
     gap: .5rem;
 
-    
 `
 export const ModalHeader = styled.div`
     width: 100%;
@@ -62,3 +61,50 @@ export const StyleForm = styled.form`
     gap: .5rem;
 
 `
+export const StyleEdit = styled.div`
+    
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    span {
+        color: #FF0000;
+        font-family: 'Roboto';
+    }
+
+    input{
+        border: 1px solid #5a5858;
+        border-radius: 5.33px;
+        padding: 8px 10px;
+        
+        font-size: 14px;
+        font-family: 'Roboto';
+    }
+    .inputEdit{
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        font-family: 'Roboto';
+
+        span{
+            border: 1px solid #5a5858;
+            border-radius: 5.33px;
+            color: var(--grey);
+            height: 35px;
+            display: inline-flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f3f3f3;
+
+        }
+        .labelEdit{
+            background-color: #ffffff;
+            border: none;
+            padding: 0;
+            font-size: 1rem;
+            height: auto;
+        }
+    }
+
+`
+

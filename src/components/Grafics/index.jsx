@@ -31,6 +31,12 @@ export const Grafics = () => {
   const { setPlayDashboard, data } = useContext(GraficsContext);
   const [inputMonth, setInputMonth] = useState("Todos");
   const [inputGraficos, setInputGraficos] = useState("Gastos e ganhos");
+
+  useEffect(()=>{
+    setPlayDashboard(true);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+
   const monthExt = {
     1: "Janeiro",
     2: "Fevereiro",
@@ -45,10 +51,6 @@ export const Grafics = () => {
     11: "Novembro",
     12: "Dezembro",
   };
-
-  useEffect(()=>{
-      setPlayDashboard(true);
-  })
 
   const colors = [
     "rgba(0, 128, 0, 1)",
