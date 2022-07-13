@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useContext } from "react";
 import { SimulatorContext } from "../../providers/simulator";
 import Button from "../Button";
@@ -13,6 +14,7 @@ import {
 } from "./styles";
 
 const Investment = () => {
+  const [monthValue, setMonthValue] = useState(0);
   const month = [1, 2, 4, 6, 8, 10, 12, 24, 48, 60, 360];
   const {
     errors,
@@ -30,6 +32,7 @@ const Investment = () => {
   } = useContext(SimulatorContext);
 
   const rangerFunction = (e) => {
+    setMonthValue(e.target.value);
     setMonths(month[e.target.value]);
   };
 
@@ -88,7 +91,7 @@ const Investment = () => {
               type="range"
               min={0}
               max={10}
-              defaultValue="0"
+              defaultValue={monthValue}
               onChange={(e) => rangerFunction(e)}
             />
           </RangeConteiner>
