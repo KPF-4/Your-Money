@@ -40,7 +40,9 @@ const Footer = () => {
         </div>
       </section>
       <section>
-        <p>Sobre nós</p>
+        <p>
+          <Link to="/sobreNos" id="sobre">Sobre nós</Link>
+        </p>
       </section>
       <section className="redesSociais">
         <IoLogoFacebook />

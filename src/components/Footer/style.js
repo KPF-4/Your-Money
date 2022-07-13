@@ -41,7 +41,12 @@ export const StyledFooter = styled.footer`
       color: #fff;
       font-family: "Inter";
     }
+
+    #sobre {
+      color: #fff;
+    }
   }
+  
   .redesSociais {
     display: flex;
     align-items: flex-start;

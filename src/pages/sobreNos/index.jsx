@@ -4,7 +4,7 @@ import * as team from "../../assets/json-animate/team-animation.json";
 import Carlos from "../../assets/imgs/Carlos.jpeg";
 import Lucas from "../../assets/imgs/Lucas.jpg";
 import Willian from "../../assets/imgs/Willian.jpg";
-import { Container, SupConteiner } from "./styles";
+import { Container, MainContainer, SupConteiner } from "./styles";
 
 const SobreNos = () => {
   const defaultOptions = {
@@ -19,7 +19,7 @@ const SobreNos = () => {
     <>
       <Header />
       <Container>
-        <div>
+        <MainContainer>
           <figure>
             <Lottie height={"auto"} options={defaultOptions} />
           </figure>
@@ -55,14 +55,14 @@ const SobreNos = () => {
                     <img src={Lucas} alt="Lucas" />
                   </figure>
                   <h2>Product Owner</h2>
-                  <p>
-                    Meu nome e lucas eu fui o Product Owner desse projeto, foi
-                    um desafio divertido particiapar da elaboração,figma e de
-                    todas as etapas, aprendi muito vendo como outras pessoas
-                    codam, alem de ser pessoas incirveis que fizeram parte dessa
-                    etapa da minha vida.
-                  </p>
                 </div>
+                <p>
+                  Meu nome e lucas eu fui o Product Owner desse projeto, foi um
+                  desafio divertido particiapar da elaboração,figma e de todas
+                  as etapas, aprendi muito vendo como outras pessoas codam, alem
+                  de ser pessoas incirveis que fizeram parte dessa etapa da
+                  minha vida.
+                </p>
               </li>
               <li>
                 <div>
@@ -74,7 +74,7 @@ const SobreNos = () => {
               </li>
             </ul>
           </SupConteiner>
-        </div>
+        </MainContainer>
       </Container>
     </>
   );
