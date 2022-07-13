@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import { GraficsContext } from "../../providers/grafics"
-import { Line } from "../LoginArea/styles"
 import { DashBoardTotalContainer,
          DashBoardTotalHeader,
          DashBoardBody } from "./style"
@@ -20,11 +19,10 @@ export const DashBoardTotal = () => {
         <DashBoardTotalContainer>
             <DashBoardTotalHeader>
                 <h3>Valor total</h3>
-                <Line />
             </DashBoardTotalHeader>
 
             <DashBoardBody>
-                <p>
+                <p className="item">
                     Total de gastos: <StyledSpan color="red"> 
                                              {negativo.toLocaleString("pt-br", {
                                                 style: "currency",
@@ -33,7 +31,7 @@ export const DashBoardTotal = () => {
                                         </StyledSpan>
                 </p>
 
-                <p>
+                <p className="item">
                     Total de ganhos: <StyledSpan color="green"> 
                                             {positivo.toLocaleString("pt-br", {
                                                 style: "currency",
@@ -42,7 +40,7 @@ export const DashBoardTotal = () => {
                                         </StyledSpan>
                 </p>
 
-                <p>
+                <p className="item">
                     Saldo: <StyledSpan color={color}>
                                 {total.toLocaleString("pt-br", {
                                     style: "currency",

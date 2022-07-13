@@ -2,8 +2,11 @@ import styled from "styled-components";
 
 export const StyleGrafics = styled.section`
     width: 100vw;
-    max-width: 90%;
-    margin: auto;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: 'Roboto';
 
     .container-Grafics{
@@ -17,6 +20,16 @@ export const StyleGrafics = styled.section`
         border-radius: 0.75rem;
         padding: 1rem;
         gap: .5rem;
+
+        h3{
+            border-bottom: 1px solid var(--black) ;
+            max-width: 60%;
+        }
+    }
+
+    .label-grafic{
+        font-size: .75rem;
+        font-weight: 600;
     }
 
     .container-grafic{

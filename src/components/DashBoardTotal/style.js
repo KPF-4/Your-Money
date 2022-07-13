@@ -1,13 +1,8 @@
 import styled from "styled-components";
 
 export const DashBoardTotalContainer = styled.div`
-    /* margin: 20px auto;
     width: 100vw;
-    max-width: 90%;
-    min-width: 380px; */
-    margin: 20px 0;
-    width: 80%;
-    height: fit-content;
+    max-width: 100%;
 
     display: flex;
     flex-direction: column;
@@ -18,16 +13,17 @@ export const DashBoardTotalContainer = styled.div`
     box-shadow: 0px .3rem .3rem 1px rgba(0, 0, 0, 0.25);
 
     font-family: 'Roboto';
-
 `
 
 export const DashBoardTotalHeader = styled.header`
-    width: 100%;
+    width: 60%;
     height: 20%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    border-bottom: 1px solid var(--black);
 
     .headerContent {
         display: flex;
@@ -43,7 +39,6 @@ export const DashBoardTotalHeader = styled.header`
     }
 `
 export const DashBoardBody = styled.div`
-    height: 100%;
     width: 100%;
 
     .headerStyleDiv {
@@ -58,10 +53,8 @@ export const DashBoardBody = styled.div`
     }
 
     .item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin: 1px;
+        font-size: .875rem;
+        font-weight: 600;
     }
 `
 export const StyledSpan = styled.span`

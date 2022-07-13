@@ -10,7 +10,7 @@ export const Container = styled.div`
     z-index: 2000;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 `
 export const StyleModal = styled.div`
@@ -23,8 +23,8 @@ export const StyleModal = styled.div`
     background-color: var(--white);
     width: 100vw;
     min-width: 250px;
-    max-width: 40%;
-    margin: auto;
+    max-width: 80%;
+    margin: 3rem auto;
     box-sizing: border-box;
     box-shadow: 0px .3rem .3rem 1px rgba(0, 0, 0, 0.25);
     border-radius: 0.75rem;

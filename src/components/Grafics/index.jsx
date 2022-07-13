@@ -209,7 +209,7 @@ export const Grafics = () => {
   const filtro = () => {
     return (
       <div className="filtros">
-        <span>Filtrar Mês Desejado</span>
+        <span  className="label-grafic">Filtrar Mês Desejado</span>
         <select
           onChange={(event) => {
             setInputMonth(event.target.value);
@@ -287,10 +287,10 @@ export const Grafics = () => {
 
   return (
     <StyleGrafics>
-      <h2>Gráficos Financeiros</h2>
       <section className="container-Grafics">
+        <h3>Gráficos Financeiros</h3>
         <div className="filtros">
-          <span>Gráficos</span>
+          <span className="label-grafic">Gráficos</span>
           <select
             onChange={(event) => {
               setInputGraficos(event.target.value);

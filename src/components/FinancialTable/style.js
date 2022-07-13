@@ -1,14 +1,9 @@
 import styled from "styled-components";
 
 export const FinancialTableContainer = styled.div`
-    /* margin: 20px auto;
-    width: 100vw;
-    max-width: 90%;
-    min-width: 380px; */
-    margin: 20px 0;
-    width: 80%;
-    height: fit-content;
 
+    width: 100vw;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     gap: .5rem;
@@ -19,14 +14,12 @@ export const FinancialTableContainer = styled.div`
 
     font-family: 'Roboto';
     font-size: 0.75rem;
+    box-sizing: border-box;
 
     .title {
         font-weight: 700;
     }
 
-    @media (min-width: 631px) {
-        font-size: 16px;
-    }
 `
 
 export const FinancialTableHeader = styled.header`

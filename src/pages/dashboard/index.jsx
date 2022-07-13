@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import { useContext} from "react";
 import { DashBoardTotal } from "../../components/DashBoardTotal"
 import { ModalContext } from "../../providers/modals"
-import { StyledDashboard } from "./styles";
+import { StyledDashboard, StyleFinancial } from "./styles";
 
 const Dashboard = () => {
     const token = localStorage.getItem("@YOURMONEY-TOKEN")
@@ -19,14 +19,19 @@ const Dashboard = () => {
 
   if(token){
       return(
-        <StyledDashboard>
+        <>
           {playAdd && <FinancialPlanModal/>}
           {playEdit && <EditPlanModal/>}
           <Header/>
-          <FinancialTable/>
-          <DashBoardTotal/>
-          <Grafics/>
-        </StyledDashboard>
+          <StyledDashboard>
+            <StyleFinancial>
+              <FinancialTable/>
+              <DashBoardTotal/>
+            </StyleFinancial>
+              <Grafics/>
+            
+          </StyledDashboard>
+        </>
       )
   } else {
       history.push("/login")
