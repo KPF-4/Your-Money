@@ -3,16 +3,16 @@ import styled from "styled-components";
 export const Container = styled.section`
     display: flex;
     justify-content: center;
-    width: 100%;
     height: 100%;
 `
 export const FormContainder = styled.div`
+
     form{
         display: flex;
         flex-direction: column;
         gap: 5px;
     }
-    width: 75%;
+
     textarea{
         box-sizing: border-box;
         padding: 5px;
