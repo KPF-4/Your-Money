@@ -14,7 +14,6 @@ export const FormStyle = styled.form`
     input{
       height: 2.5rem;
     }
-    gap: 30px;
     select{
       height:2.5rem;
     }
