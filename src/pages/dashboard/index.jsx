@@ -10,6 +10,9 @@ import { useState } from "react";
 import { DashBoardTotal } from "../../components/DashBoardTotal";
 import { StyledDashboard } from "./styles";
 import Footer from "../../components/Footer";
+import Button from "../../components/Button";
+import SearchDashboard from "../../components/SearchDashboard";
+import FilterDashboard from "../../components/FilterDashboard";
 
 const Dashboard = () => {
   const [postId, setPostId] = useState(undefined);
@@ -45,18 +48,19 @@ const Dashboard = () => {
           financialPlanModal={financialPlanModal}
           handleFinancialPlanModal={handleFinancialPlanModal}
         />
-
         <EditPlanModal
           postId={postId}
           handleModal={handleEditFinancialPlanModal}
           modal={editFinancialPlanModal}
         />
 
+        <SearchDashboard />
+        <FilterDashboard />
+
         <FinancialTable
           handleFinancialPlanModal={handleFinancialPlanModal}
           handleEditFinancialPlanModal={handleEditFinancialPlanModal}
         />
-
         <DashBoardTotal />
         <Grafics />
         <Footer />

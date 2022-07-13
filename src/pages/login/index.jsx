@@ -6,6 +6,7 @@ import * as animationData from "../../assets/json-animate/Login-animation.json";
 import { FlexComponent } from "./styles";
 
 const Login = () => {
+  
   const defaultOptions = {
     loop: true,
     autoplay: true,
