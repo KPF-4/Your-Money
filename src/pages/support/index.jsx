@@ -14,6 +14,7 @@ const Support = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
   return (
     <>
       <Header />

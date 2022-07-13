@@ -1,11 +1,15 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import Button from "../Button";
 import Input from "../Input";
 import { ButtonConteiner, Container, FormContainder } from "./styles";
+import { toast } from "react-toastify";
 
 const Sup = () => {
+  const history = useHistory();
+
   const shema = yup.object().shape({
     nome: yup
       .string()
@@ -18,20 +22,32 @@ const Sup = () => {
       .string()
       .required("Campo obrigatorio.")
       .oneOf([yup.ref("email")], "Email não coincidem"),
-    tel: yup.string().required("Campo obrigatorio."),
+    contact: yup.string().required("Campo obrigatorio."),
     text: yup.string().required("Campo obrigatorio."),
   });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(shema) });
-  console.log(errors);
-  const onSubmitFunction = (data) => {};
+
+  const onSubmitFunction = (data) => {
+    const resolve = new Promise((resolve, reject) => {
+      setTimeout(resolve, 600);
+      setTimeout(() => history.push("/"), 1500);
+    });
+    toast.promise(resolve, {
+      pending: "Aguarde",
+      success: "Mensagem enviada com sucesso",
+      error: "Erro no servidor",
+    });
+  };
+
   return (
     <Container>
       <FormContainder>
-        <form action="" onSubmit={handleSubmit(onSubmitFunction)}>
+        <form onSubmit={handleSubmit(onSubmitFunction)}>
           <Input
             label={"Nome"}
             error={errors.nome}
@@ -76,7 +92,7 @@ const Sup = () => {
             register={register}
             name="contact"
             type="text"
-            error={errors.text}
+            error={errors.contact}
             placeholder="Digite seu Contato"
           />
           <div>
