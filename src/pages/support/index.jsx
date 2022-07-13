@@ -2,7 +2,8 @@ import Header from "../../components/Header";
 import Sup from "../../components/Sup";
 import * as support from "../../assets/json-animate/support-animate.json";
 import Lottie from "react-lottie";
-import { Title } from "./style";
+import { SuportArea, Title } from "./style";
+import Footer from "../../components/Footer";
 
 const Support = () => {
   const defaultOptions = {
@@ -19,14 +20,15 @@ const Support = () => {
       <Title>
         <h1>Suporte Yuor Money</h1>
       </Title>
-      <div id="sup">
-        <div>
+      <SuportArea>
+        <div id="sup">
           <figure>
             <Lottie height={"auto"} options={defaultOptions} />
           </figure>
+          <Sup />
         </div>
-        <Sup />
-      </div>
+      </SuportArea>
+      <Footer />
     </>
   );
 };
