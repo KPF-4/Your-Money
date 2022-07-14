@@ -13,6 +13,10 @@ export const StyledFooter = styled.footer`
   justify-content: center;
   flex-direction: row;
 
+  p {
+    cursor: pointer;
+  }
+
   section {
     display: flex;
     flex-direction: column;
@@ -46,7 +50,7 @@ export const StyledFooter = styled.footer`
       color: #fff;
     }
   }
-  
+
   .redesSociais {
     display: flex;
     align-items: flex-start;

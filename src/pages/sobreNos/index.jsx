@@ -57,10 +57,10 @@ const SobreNos = () => {
                   <h2>Product Owner</h2>
                 </div>
                 <p>
-                  Meu nome e lucas eu fui o Product Owner desse projeto, foi um
-                  desafio divertido particiapar da elaboração,figma e de todas
-                  as etapas, aprendi muito vendo como outras pessoas codam, alem
-                  de ser pessoas incirveis que fizeram parte dessa etapa da
+                  Meu nome é Lucas eu fui o Product Owner desse projeto, foi um
+                  desafio divertido participar da elaboração, figma e de todas
+                  as etapas, aprendi muito vendo como outras pessoas escrevem suas linhas de código, além
+                  de ser pessoas incríveis que fizeram parte dessa etapa da
                   minha vida.
                 </p>
               </li>

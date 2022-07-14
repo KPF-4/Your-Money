@@ -9,11 +9,11 @@ export const Container = styled.section`
 `;
 export const SupConteiner = styled.div`
   figure {
-    width: 10rem;
-    border: 5px dashed #53f3;
+    width: 11rem;
+    border: 5px dashed dodgerblue;
     border-radius: 100px;
     overflow: hidden;
-    height: 10rem;
+    height: 11rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,6 +32,8 @@ export const MainContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
+    
     li {
       display: flex;
       flex-direction: column;
@@ -41,6 +43,8 @@ export const MainContainer = styled.div`
       width: 80%;
       line-height: 30px;
       text-align: center;
+      gap: 10px;
+
       figure {
         transition: 0.3s;
 

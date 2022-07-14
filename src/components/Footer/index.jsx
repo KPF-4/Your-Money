@@ -40,8 +40,8 @@ const Footer = () => {
         </div>
       </section>
       <section>
-        <p>
-          <Link to="/sobreNos" id="sobre">Sobre nós</Link>
+        <p onClick={()=> history.push("/sobrenos")}>
+          Sobre nós
         </p>
       </section>
       <section className="redesSociais">
