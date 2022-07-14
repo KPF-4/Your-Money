@@ -19,7 +19,7 @@ export const QuotationProvider = ({ children }) => {
       .then((response) => {
         setListQuotation(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
   const fetchQuot = async () => {
     await axios
@@ -27,7 +27,7 @@ export const QuotationProvider = ({ children }) => {
       .then((response) => {
         setQuotation(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 
   useEffect(() => {

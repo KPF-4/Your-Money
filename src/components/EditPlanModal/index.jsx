@@ -62,12 +62,10 @@ const EditPlanModal = () => {
         .then((res) => {
           setTimeout(resolve);
           setPlayDashboard(true);
-          console.log(res);
           handleCloseEdit()
         })
         .catch((err) => {
           setTimeout(reject);
-          console.log(err);
         });
     });
 
@@ -85,12 +83,10 @@ const EditPlanModal = () => {
         .then((res) => {
           setTimeout(resolve);
           setPlayDashboard(true);
-          console.log(res);
           handleCloseEdit()
         })
         .catch((err) => {
           setTimeout(reject);
-          console.log(err);
         });
     });
 
