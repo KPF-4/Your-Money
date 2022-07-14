@@ -1,14 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  span {
-    color: #ff0000;
-    font-family: "Roboto";
-  }
-`;
-
 export const InputContainer = styled.input`
   border: 1px solid #5a5858;
   border-radius: 5.33px;
@@ -16,6 +7,17 @@ export const InputContainer = styled.input`
 
   font-size: 14px;
   font-family: "Roboto";
+  width: 500px;
+  min-width: 10px;
 `;
 
-export const Label = styled.label``;
+export const SearchStyled = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 90%;
+  button {
+    padding: 10px 20px;
+  }
+`;

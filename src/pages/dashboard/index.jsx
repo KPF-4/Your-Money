@@ -6,37 +6,39 @@ import { FinancialPlanModal } from "../../components/FinancialPlanModal";
 
 import { useHistory } from "react-router-dom";
 
-import { useContext} from "react";
-import { DashBoardTotal } from "../../components/DashBoardTotal"
-import { ModalContext } from "../../providers/modals"
-import { StyledDashboard, StyleFinancial } from "./styles";
+import { useContext } from "react";
+import { DashBoardTotal } from "../../components/DashBoardTotal";
+import { ModalContext } from "../../providers/modals";
+import { StyledDashboard } from "./styles";
+import Footer from "../../components/Footer";
+import SearchDashboard from "../../components/SearchDashboard";
+import FilterDashboard from "../../components/FilterDashboard";
 
 const Dashboard = () => {
-    const token = localStorage.getItem("@YOURMONEY-TOKEN")
-    const history = useHistory()
+  const token = localStorage.getItem("@YOURMONEY-TOKEN");
+  const history = useHistory();
 
-    const{playAdd, playEdit}= useContext(ModalContext);
+  const { playAdd, playEdit } = useContext(ModalContext);
 
-  if(token){
-      return(
-        <>
-          {playAdd && <FinancialPlanModal/>}
-          {playEdit && <EditPlanModal/>}
-          <Header/>
-          <StyledDashboard>
-            <StyleFinancial>
-              <FinancialTable/>
-              <DashBoardTotal/>
-            </StyleFinancial>
-              <Grafics/>
-            
-          </StyledDashboard>
-        </>
-      )
+  if (token) {
+    return (
+      <>
+        {playAdd && <FinancialPlanModal />}
+        {playEdit && <EditPlanModal />}
+        <Header />
+        <StyledDashboard>
+          <SearchDashboard />
+          <FilterDashboard />
+          <FinancialTable />
+          <DashBoardTotal />
+          <Grafics />
+        </StyledDashboard>
+        <Footer />
+      </>
+    );
   } else {
-      history.push("/login")
+    history.push("/login");
   }
-    
 };
 
 export default Dashboard;

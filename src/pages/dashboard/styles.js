@@ -7,10 +7,16 @@ export const StyledDashboard = styled.section`
     align-items: center;
     width: 100vw;
     max-width: 90%;
+    min-width: 300px;
     align-items: center;
-    margin: auto;
-    gap: 1rem;
     margin: 1rem auto 1rem auto;
+    gap: 1rem;
+    
+
+    @media (min-width: 768px){
+        display: flex;
+        flex-wrap: wrap;
+    }
 
    
 `
@@ -22,8 +28,16 @@ export const StyleFinancial = styled.div`
     width: 100vw;
     max-width: 100%;
     gap: 1rem;
+    @media (min-width: 768px){
+        max-width: 40%;
+    }
+    
 `
 
 export const StyleGraficDash = styled.div`
     display: flex;
+
+    @media (min-width: 768px){
+        max-width: 40%;
+    }
 `
