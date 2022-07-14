@@ -8,7 +8,6 @@ import {
   Container,
   FormStyle,
   RangeConteiner,
-  RangeStyle,
   SectionContainer,
   SelectStyle,
   TitleConteiner,
