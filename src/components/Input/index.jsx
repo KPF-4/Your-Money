@@ -1,14 +1,10 @@
-import { Container, InputContainer, Label } from "./styles";
+import { Container, InputContainer } from "./styles";
 
 const Input = ({ id, label, error, register, name, ...rest }) => {
-
   return (
     <Container>
-      <Label htmlFor={name}>{label}</Label>
-      <InputContainer 
-      {...rest} 
-      {...register(name)} 
-      />
+      <label htmlFor={name}>{label}</label>
+      <InputContainer {...rest} {...register(name)} />
       {error && <span>{error.message}</span>}
     </Container>
   );
