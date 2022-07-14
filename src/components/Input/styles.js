@@ -17,5 +17,3 @@ export const InputContainer = styled.input`
   font-size: 14px;
   font-family: "Roboto";
 `;
-
-export const Label = styled.label``;

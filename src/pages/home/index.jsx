@@ -1,7 +1,8 @@
 import Header from "../../components/Header";
 import Quotation from "../../components/Quotation";
-import { StyledHome } from "./styles";
+import { StyledHome, SimualdorStyle } from "./styles";
 import * as animationData from "../../assets/json-animate/Cotações-animation.json";
+import * as simulator from "../../assets/json-animate/simulator-animite.json";
 import Lottie from "react-lottie";
 import Footer from "../../components/Footer";
 import NewsArea from "../../components/NewsArea";
@@ -12,6 +13,14 @@ const Home = () => {
     loop: true,
     autoplay: true,
     animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+  const defaultOptions1 = {
+    loop: true,
+    autoplay: true,
+    animationData: simulator,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
@@ -28,10 +37,12 @@ const Home = () => {
             </figure>
             <Quotation />
           </div>
-          <div id="simulador">
-            <figure>Lottie</figure>
+          <SimualdorStyle>
+            <figure  id="simulador">
+              <Lottie height={"auto"} options={defaultOptions1} />
+            </figure>
             <Investment />
-          </div>
+          </SimualdorStyle>
         </div>
         <NewsArea />
       </div>

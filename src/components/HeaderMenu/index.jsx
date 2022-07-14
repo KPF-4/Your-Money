@@ -29,7 +29,7 @@ const HeaderMenu = ({ showMenu, handleMenu }) => {
       {history.location.pathname === "/" ? (
         <>
           <div>
-            <Link to="/dashboard">
+            <Link to="/">
               <GoGraph />
               <p>Simulador</p>
               <span></span>
@@ -67,7 +67,7 @@ const HeaderMenu = ({ showMenu, handleMenu }) => {
             </Link>
           </div>
           <div>
-            <Link to="/dashboard">
+            <Link to="/">
               <GoGraph />
               <p>Simulador</p>
               <span></span>

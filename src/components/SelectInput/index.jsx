@@ -6,7 +6,7 @@ const SelectInput = ({ setValue, label, name, inputOptions, error, register}) =>
   return (
     <>
       <Container>
-        <Label htmlFor={name}> {label} </Label>
+        <label htmlFor={name}> {label} </label>
         <SelectContainer
           onChange={(event) => setValue(event.target.value)}
           {...register(name)}

@@ -23,7 +23,6 @@ export const GraficsProvider = ({ children }) => {
         setPlayDashboard(false);
       })
       .catch((error) => {
-        console.log(error);
         setPlayDashboard(false);
       });
   };

@@ -10,7 +10,7 @@ export default createGlobalStyle`
 
     :root{
         --green: #008000;
-        --grey: #5A5858;
+        --grey: #0f0f0f;
         --red: #FF0000;
         --white: #ffffff;
         --black: #000000;
@@ -30,6 +30,7 @@ export default createGlobalStyle`
 
     h3, label {
         font-family: "Roboto";
+        font-weight: 700;
         font-size: 16px;
     }
 

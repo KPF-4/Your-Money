@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const DashBoardTotalContainer = styled.div`
-    width: 100vw;
-    max-width: 100%;
+    margin-bottom: 20px;
+    width: 100%;
+    height: fit-content;
 
     display: flex;
     flex-direction: column;

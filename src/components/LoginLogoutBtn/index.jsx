@@ -7,12 +7,12 @@ import { StyledButton, UserOptions } from "./style";
 const LoginLogoutBtn = ({ isLogged, setToken }) => {
   const [showOptions, setShowOptions] = useState(false);
 
-  const history = useHistory()
+  const history = useHistory();
 
   const removeToken = () => {
     localStorage.removeItem("@YOURMONEY-TOKEN");
     localStorage.removeItem("@YOURMONEY-ID");
-    history.push("/")
+    history.push("/");
     setToken("");
   };
 
@@ -24,27 +24,26 @@ const LoginLogoutBtn = ({ isLogged, setToken }) => {
             <div>
               <BiUser viewBox="1 -1 24 24" />
             </div>
-            <UserOptions
-              showOptions={showOptions}
-            >
+            <UserOptions showOptions={showOptions}>
               <p onClick={removeToken}>Sair</p>
-              <Link to="/dashboard">Simulação</Link>
+              {history.location.pathname === "/" ? (
+                <Link to="/dashboard">Tabela</Link>
+              ) : (
+                <Link to="/">Home</Link>
+              )}
             </UserOptions>
           </>
         ) : (
           <>
             <RiLoginBoxLine />
             Entrar
-            <UserOptions
-              showOptions={showOptions}
-            >
+            <UserOptions showOptions={showOptions}>
               <Link to="/login">Login</Link>
               <Link to="/registro">Cadastro</Link>
             </UserOptions>
           </>
         )}
       </StyledButton>
-      <></>
     </>
   );
 };

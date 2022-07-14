@@ -71,11 +71,9 @@ export const FinancialPlanModal = () => {
       .then((res) => {
         setTimeout(resolve)
         setPlayDashboard(true)
-        console.log(res)
       })
       .catch((err) => {
         setTimeout(reject)
-        console.log(err)
       });
     })
       

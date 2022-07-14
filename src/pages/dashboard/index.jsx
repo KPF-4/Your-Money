@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { DashBoardTotal } from "../../components/DashBoardTotal";
 import { ModalContext } from "../../providers/modals";
-import { StyledDashboard } from "./styles";
+import { FinancialDashboard, MainDashboard, StyledDashboard } from "./styles";
 import Footer from "../../components/Footer";
 import SearchDashboard from "../../components/SearchDashboard";
 import FilterDashboard from "../../components/FilterDashboard";
@@ -26,13 +26,17 @@ const Dashboard = () => {
         {playAdd && <FinancialPlanModal />}
         {playEdit && <EditPlanModal />}
         <Header />
-        <StyledDashboard>
-          <SearchDashboard />
-          <FilterDashboard />
-          <FinancialTable />
-          <DashBoardTotal />
-          <Grafics />
-        </StyledDashboard>
+        <SearchDashboard />
+        <FilterDashboard />
+        <MainDashboard>
+          <FinancialDashboard>
+            <FinancialTable />
+            <DashBoardTotal />
+          </FinancialDashboard>
+          <FinancialDashboard>
+            <Grafics />
+          </FinancialDashboard>
+        </MainDashboard>
         <Footer />
       </>
     );

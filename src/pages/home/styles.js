@@ -46,3 +46,14 @@ export const StyledHome = styled.section`
   }
   
 `;
+export const SimualdorStyle = styled.div`
+figure{
+  width: 100%;
+}
+@media (min-width: 1000px) {
+  display: flex;
+figure{
+  width: 45%;
+}
+}
+`
